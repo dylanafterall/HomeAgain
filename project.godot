@@ -1,0 +1,38 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="HomeAgain"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+boot_splash/show_image=false
+
+[audio]
+
+buses/default_bus_layout="res://audio_bus_layout.tres"
+
+[autoload]
+
+SceneSwitcher="*res://autoloads/scene_switcher/scene_switcher.tscn"
+
+[display]
+
+window/size/viewport_width=3840
+window/size/viewport_height=2160
+window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="HomeAgain"
+
+[filesystem]
+
+import/blender/enabled=false

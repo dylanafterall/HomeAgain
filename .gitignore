@@ -13,3 +13,12 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Jetbrains-specific ignores
+.idea/
+
+# OS specific ignores
+.DS_Store
+
+# Project specific ignores
+assets/
