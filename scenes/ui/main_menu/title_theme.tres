@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cvvbtj3oknfk8"]
+
+[ext_resource type="FontFile" uid="uid://clvlgm1n6nfjk" path="res://assets/fonts/nasalization/nasalization-rg.otf" id="1_456y1"]
+
+[resource]
+Label/colors/font_outline_color = Color(0.988235, 0.239216, 0.129412, 1)
+Label/constants/outline_size = 20
+Label/font_sizes/font_size = 210
+Label/fonts/font = ExtResource("1_456y1")

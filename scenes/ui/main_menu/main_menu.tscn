@@ -1,0 +1,120 @@
+[gd_scene load_steps=11 format=3 uid="uid://cvbej4jipr7pr"]
+
+[ext_resource type="Script" path="res://scenes/ui/main_menu/main_menu.gd" id="1_wdndi"]
+[ext_resource type="AudioStream" uid="uid://dwjsf76o44iq1" path="res://assets/audio/music/Behind the Universe.mp3" id="2_fhuii"]
+[ext_resource type="AudioStream" uid="uid://b4k1r40cxpw54" path="res://assets/audio/effects/kenney_interface/drop_004.ogg" id="3_pjgd0"]
+[ext_resource type="AudioStream" uid="uid://c6ipr8kg1qnuc" path="res://assets/audio/effects/kenney_interface/drop_002.ogg" id="4_omkhs"]
+[ext_resource type="Texture2D" uid="uid://c15qm8pv63hao" path="res://assets/images/sprites/nasa/earthstill.png" id="5_twkn7"]
+[ext_resource type="VideoStream" path="res://assets/video/EarthAtNight_Rotate_high.ogv" id="6_p8y4e"]
+[ext_resource type="Texture2D" uid="uid://ckw5lt3r6i43x" path="res://assets/images/sprites/nasa/ApolloPanoramic.jpg" id="7_7ic01"]
+[ext_resource type="Theme" uid="uid://cvvbtj3oknfk8" path="res://scenes/ui/main_menu/title_theme.tres" id="8_b0hjx"]
+[ext_resource type="Theme" uid="uid://dgmjks8mitn4d" path="res://scenes/ui/main_menu/menu_theme.tres" id="9_721ga"]
+[ext_resource type="Texture2D" uid="uid://dekg8htew61cv" path="res://assets/images/sprites/nasa/redvector.png" id="10_pfhq7"]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_wdndi")
+background_music = ExtResource("2_fhuii")
+enter_sfx = ExtResource("3_pjgd0")
+settings_sfx = ExtResource("4_omkhs")
+settings_scene = "res://scenes/ui/main_menu/settings_menu/settings_menu.tscn"
+
+[node name="BlackBackground" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="LunarSurface" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_left = -0.33
+anchor_top = 0.28
+anchor_right = 2.292
+anchor_bottom = 0.756
+offset_left = -2.28882e-05
+offset_top = -1.09673e-05
+offset_right = -1268.48
+offset_bottom = 582.24
+texture = ExtResource("7_7ic01")
+metadata/_edit_lock_ = true
+
+[node name="EarthVideo" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.03
+anchor_top = 0.05
+anchor_right = 0.03
+anchor_bottom = 0.05
+metadata/_edit_lock_ = true
+
+[node name="EarthStillImage" type="TextureRect" parent="EarthVideo"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_twkn7")
+
+[node name="EarthVideoPlayer" type="VideoStreamPlayer" parent="EarthVideo"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("6_p8y4e")
+autoplay = true
+
+[node name="Title" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.3
+anchor_top = 0.1
+anchor_right = 0.7
+anchor_bottom = 0.25
+theme = ExtResource("8_b0hjx")
+
+[node name="TitleLabel" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Home Again"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.4
+anchor_right = 0.6
+anchor_bottom = 0.55
+grow_vertical = 0
+theme = ExtResource("9_721ga")
+
+[node name="EnterButton" type="Button" parent="Buttons" groups=["Buttons"]]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+text = "Enter"
+icon = ExtResource("10_pfhq7")
+icon_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="Buttons" groups=["Buttons"]]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../EnterButton")
+focus_neighbor_bottom = NodePath("../ExitButton")
+focus_next = NodePath("../ExitButton")
+focus_previous = NodePath("../EnterButton")
+text = "Settings"
+icon = ExtResource("10_pfhq7")
+icon_alignment = 1
+
+[node name="ExitButton" type="Button" parent="Buttons" groups=["Buttons"]]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_previous = NodePath("../SettingsButton")
+text = "Exit"
+icon = ExtResource("10_pfhq7")
+icon_alignment = 1
