@@ -84,10 +84,10 @@ vertical_alignment = 1
 [node name="Buttons" type="VBoxContainer" parent="."]
 anchors_preset = -1
 anchor_left = 0.4
-anchor_top = 0.4
+anchor_top = 0.33
 anchor_right = 0.6
 anchor_bottom = 0.55
-grow_vertical = 0
+offset_left = -2.28882e-05
 theme = ExtResource("9_721ga")
 
 [node name="EnterButton" type="Button" parent="Buttons" groups=["Buttons"]]

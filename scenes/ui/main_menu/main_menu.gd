@@ -2,18 +2,6 @@ class_name MainMenu
 extends CanvasLayer
 
 # ------------------------------------------------------------------------------
-# signals ----------------------------------------------------------------------
-
-
-# ------------------------------------------------------------------------------
-# enums ------------------------------------------------------------------------
-
-
-# ------------------------------------------------------------------------------
-# constants --------------------------------------------------------------------
-
-
-# ------------------------------------------------------------------------------
 # @export variables ------------------------------------------------------------
 
 @export var background_music: AudioStream
@@ -26,25 +14,17 @@ extends CanvasLayer
 
 
 # ------------------------------------------------------------------------------
-# public variables -------------------------------------------------------------
-
-
-# ------------------------------------------------------------------------------
-# private variables ------------------------------------------------------------
-
-
-# ------------------------------------------------------------------------------
 # @onready variables -----------------------------------------------------------
+
+@onready var enter_button: Button = %EnterButton
+@onready var settings_button: Button = %SettingsButton
+@onready var exit_button: Button = %ExitButton
+@onready var earth_video: VideoStreamPlayer = %EarthVideoPlayer
 
 
 # ------------------------------------------------------------------------------
 # built-in virtual methods -----------------------------------------------------
 
-# called every time the node enters the scene tree
-func _enter_tree() -> void:
-    pass
-    
-    
 # called when both the node and its children have entered the scene tree
 func _ready() -> void:
     # lower master volume (bus index 0) when loading into main menu
@@ -60,41 +40,10 @@ func _ready() -> void:
         button.focus_exited.connect(_move_from_button.bind(button)) 
         button.pressed.connect(_animate_button_press.bind(button))
         
-    %EarthVideoPlayer.finished.connect(_on_earth_video_finished)
+    earth_video.finished.connect(_on_earth_video_finished)
         
-    %EnterButton.grab_focus()
+    enter_button.grab_focus()
     
-    
-# called when node is about to leave scene tree, after all children receive the 
-#   _exit_tree() callback
-func _exit_tree() -> void:
-    pass
- 
- 
-# called every frame, as often as possible   
-func _process(_delta: float) -> void:
-    pass
-    
-    
-# called every physics frame
-func _physics_process(_delta: float) -> void:
-    pass
-    
-    
-# called once for every event
-func _unhandled_input(_event: InputEvent) -> void:
-    pass
-    
-    
-# called once for every event, before _unhandled_input(), allowing you to 
-#   consume some events
-func _input(_event: InputEvent) -> void:
-    pass
-
-
-# ------------------------------------------------------------------------------
-# public methods ---------------------------------------------------------------
-
 
 # ------------------------------------------------------------------------------
 # private methods --------------------------------------------------------------
@@ -130,23 +79,15 @@ func _move_from_button(button: Button) -> void:
     
     
 func _animate_button_press(button: Button) -> void:
-    var enter = %EnterButton
-    var settings = %SettingsButton
-    var exit = %ExitButton
-    
     match button:
-        enter:
+        enter_button:
             SceneSwitcher.PlayAudioEffect(enter_sfx)
-            #SceneSwitcher.GoToScene(game_scene)
-        settings:
+        settings_button:
             SceneSwitcher.PlayAudioEffect(settings_sfx)
             SceneSwitcher.GoToScene(settings_scene)
-        exit:
+        exit_button:
+            get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
             get_tree().quit()
             
 func _on_earth_video_finished():
-    %EarthVideoPlayer.play()
-
-
-# ------------------------------------------------------------------------------
-# subclasses -------------------------------------------------------------------
+    earth_video.play()

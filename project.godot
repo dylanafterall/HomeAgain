@@ -22,6 +22,8 @@ buses/default_bus_layout="res://audio_bus_layout.tres"
 [autoload]
 
 SceneSwitcher="*res://autoloads/scene_switcher/scene_switcher.tscn"
+WorldEnv="*res://autoloads/world_environment/world_env.tscn"
+SystemInfoDisplay="*res://autoloads/system_info_display/system_info_display.tscn"
 MusicPlayer="*res://autoloads/music_player/music_player.tscn"
 
 [display]
@@ -37,3 +39,7 @@ project/assembly_name="HomeAgain"
 [filesystem]
 
 import/blender/enabled=false
+
+[rendering]
+
+anti_aliasing/quality/msaa_2d=2

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c80kgh3ygxqoa"]
+
+[ext_resource type="Script" path="res://scenes/ui/main_menu/settings_menu/accessibility_settings/accessibility_settings.gd" id="1_h0ni5"]
+
+[node name="AccessibilitySettings" type="CanvasLayer"]
+script = ExtResource("1_h0ni5")

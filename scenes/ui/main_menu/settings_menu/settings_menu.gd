@@ -2,18 +2,6 @@ class_name SettingsMenu
 extends CanvasLayer
 
 # ------------------------------------------------------------------------------
-# signals ----------------------------------------------------------------------
-
-
-# ------------------------------------------------------------------------------
-# enums ------------------------------------------------------------------------
-
-
-# ------------------------------------------------------------------------------
-# constants --------------------------------------------------------------------
-
-
-# ------------------------------------------------------------------------------
 # @export variables ------------------------------------------------------------
 
 @export_group("SceneSwitcher Settings")
@@ -22,25 +10,21 @@ extends CanvasLayer
 
 
 # ------------------------------------------------------------------------------
-# public variables -------------------------------------------------------------
-
-
-# ------------------------------------------------------------------------------
-# private variables ------------------------------------------------------------
-
-
-# ------------------------------------------------------------------------------
 # @onready variables -----------------------------------------------------------
+
+@onready var video_button: Button = %VideoButton
+@onready var audio_button: Button = %AudioButton
+@onready var accessibility_button: Button = %AccessibilityButton
+@onready var controller_button: Button = %ControllerButton
+@onready var keyboard_button: Button = %KeyboardButton
+@onready var credits_button: Button = %CreditsButton
+@onready var back_button: Button = %BackButton
+@onready var moon_video: VideoStreamPlayer = %MoonVideoPlayer
 
 
 # ------------------------------------------------------------------------------
 # built-in virtual methods -----------------------------------------------------
 
-# called every time the node enters the scene tree
-func _enter_tree() -> void:
-	pass
-	
-	
 # called when both the node and its children have entered the scene tree
 func _ready() -> void:
 	var buttons = get_tree().get_nodes_in_group("Buttons")
@@ -50,40 +34,9 @@ func _ready() -> void:
 		button.focus_exited.connect(_move_from_button.bind(button)) 
 		button.pressed.connect(_animate_button_press.bind(button))
 	
-	%MoonVideoPlayer.finished.connect(_on_moon_video_finished)
+	moon_video.finished.connect(_on_moon_video_finished)
 	
-	%VideoButton.grab_focus()
-	
-	
-# called when node is about to leave scene tree, after all children receive the 
-#   _exit_tree() callback
-func _exit_tree() -> void:
-	pass
- 
- 
-# called every frame, as often as possible   
-func _process(_delta: float) -> void:
-	pass
-	
-	
-# called every physics frame
-func _physics_process(_delta: float) -> void:
-	pass
-	
-	
-# called once for every event
-func _unhandled_input(_event: InputEvent) -> void:
-	pass
-	
-	
-# called once for every event, before _unhandled_input(), allowing you to 
-#   consume some events
-func _input(_event: InputEvent) -> void:
-	pass
-
-
-# ------------------------------------------------------------------------------
-# public methods ---------------------------------------------------------------
+	video_button.grab_focus()
 
 
 # ------------------------------------------------------------------------------
@@ -120,33 +73,21 @@ func _move_from_button(button: Button) -> void:
 	
 	
 func _animate_button_press(button: Button) -> void:
-	var video = %VideoButton
-	var audio = %AudioButton
-	var accessibility = %AccessibilityButton
-	var controller = %ControllerButton
-	var keyboard = %KeyboardButton
-	var credits = %CreditsButton
-	var back = %BackButton
-	
 	match button:
-		video:
+		video_button:
 			print("video")
-		audio:
+		audio_button:
 			print("audio")
-		accessibility:
+		accessibility_button:
 			print("accessibility")
-		controller:
+		controller_button:
 			print("controller")
-		keyboard:
+		keyboard_button:
 			print("keyboard")
-		credits:
+		credits_button:
 			print("credits")
-		back:
+		back_button:
 			SceneSwitcher.GoToScene(back_scene)
 			
 func _on_moon_video_finished():
-	%MoonVideoPlayer.play()
-
-
-# ------------------------------------------------------------------------------
-# subclasses -------------------------------------------------------------------
+	moon_video.play()

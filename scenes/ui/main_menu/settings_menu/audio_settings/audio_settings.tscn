@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcu3r45b84q1e"]
+
+[ext_resource type="Script" path="res://scenes/ui/main_menu/settings_menu/audio_settings/audio_settings.gd" id="1_pchpa"]
+
+[node name="AudioSettings" type="CanvasLayer"]
+script = ExtResource("1_pchpa")

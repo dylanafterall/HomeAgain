@@ -1,0 +1,502 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq3djufvhff5l"]
+
+[ext_resource type="Script" path="res://scenes/ui/main_menu/settings_menu/video_settings/video_settings.gd" id="1_w0o2i"]
+[ext_resource type="Theme" uid="uid://dgmjks8mitn4d" path="res://scenes/ui/main_menu/menu_theme.tres" id="2_2sug3"]
+[ext_resource type="Texture2D" uid="uid://b7nnrjykats3u" path="res://assets/images/sprites/nasa/star.png" id="3_4fl6n"]
+[ext_resource type="Texture2D" uid="uid://dekg8htew61cv" path="res://assets/images/sprites/nasa/redvector.png" id="3_hji25"]
+
+[node name="VideoSettings" type="CanvasLayer"]
+script = ExtResource("1_w0o2i")
+back_scene = "res://scenes/ui/main_menu/settings_menu/settings_menu.tscn"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.1
+anchor_right = 0.75
+anchor_bottom = 0.7
+offset_left = -5.34058e-05
+offset_top = -1.28746e-05
+offset_right = -6.10352e-05
+follow_focus = true
+
+[node name="ScrollMargin" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="VideoMenu" type="VBoxContainer" parent="ScrollContainer/ScrollMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_2sug3")
+
+[node name="Display" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/VideoMenu"]
+layout_mode = 2
+
+[node name="DisplayLabel" type="Label" parent="ScrollContainer/ScrollMargin/VideoMenu/Display"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Fullscreen: On/Off"
+
+[node name="DisplayHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/Display/DisplayLabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4fl6n")
+
+[node name="DisplayIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/Display/DisplayLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hji25")
+
+[node name="DisplayButton" type="CheckButton" parent="ScrollContainer/ScrollMargin/VideoMenu/Display" groups=["CheckButtons"]]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_bottom = NodePath("../../Resolution/ResolutionButton")
+focus_next = NodePath("../../Resolution/ResolutionButton")
+icon_alignment = 1
+
+[node name="Resolution" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/VideoMenu"]
+layout_mode = 2
+
+[node name="ResolutionLabel" type="Label" parent="ScrollContainer/ScrollMargin/VideoMenu/Resolution"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resolution"
+
+[node name="ResolutionHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/Resolution/ResolutionLabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4fl6n")
+
+[node name="ResolutionIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/Resolution/ResolutionLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hji25")
+
+[node name="ResolutionButton" type="OptionButton" parent="ScrollContainer/ScrollMargin/VideoMenu/Resolution" groups=["OptionButtons"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../Display/DisplayButton")
+focus_neighbor_bottom = NodePath("../../VSync/VSyncButton")
+focus_next = NodePath("../../VSync/VSyncButton")
+focus_previous = NodePath("../../Display/DisplayButton")
+alignment = 1
+
+[node name="VSync" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/VideoMenu"]
+layout_mode = 2
+
+[node name="VSyncLabel" type="Label" parent="ScrollContainer/ScrollMargin/VideoMenu/VSync"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "VSync: On/Off"
+
+[node name="VSyncHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/VSync/VSyncLabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4fl6n")
+
+[node name="VSyncIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/VSync/VSyncLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hji25")
+
+[node name="VSyncButton" type="CheckButton" parent="ScrollContainer/ScrollMargin/VideoMenu/VSync" groups=["CheckButtons"]]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../Resolution/ResolutionButton")
+focus_neighbor_bottom = NodePath("../../MaxFPS/MaxFPSButton")
+focus_next = NodePath("../../MaxFPS/MaxFPSButton")
+focus_previous = NodePath("../../Resolution/ResolutionButton")
+icon_alignment = 1
+
+[node name="MaxFPS" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/VideoMenu"]
+layout_mode = 2
+
+[node name="MaxFPSLabel" type="Label" parent="ScrollContainer/ScrollMargin/VideoMenu/MaxFPS"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Max FPS"
+
+[node name="MaxFPSHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/MaxFPS/MaxFPSLabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4fl6n")
+
+[node name="MaxFPSIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/MaxFPS/MaxFPSLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hji25")
+
+[node name="MaxFPSButton" type="OptionButton" parent="ScrollContainer/ScrollMargin/VideoMenu/MaxFPS" groups=["OptionButtons"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../VSync/VSyncButton")
+focus_neighbor_bottom = NodePath("../../ShowFPS/ShowFPSButton")
+focus_next = NodePath("../../ShowFPS/ShowFPSButton")
+focus_previous = NodePath("../../VSync/VSyncButton")
+alignment = 1
+
+[node name="ShowFPS" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/VideoMenu"]
+layout_mode = 2
+
+[node name="ShowFPSLabel" type="Label" parent="ScrollContainer/ScrollMargin/VideoMenu/ShowFPS"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Show FPS: On/Off"
+
+[node name="ShowFPSHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/ShowFPS/ShowFPSLabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4fl6n")
+
+[node name="ShowFPSIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/ShowFPS/ShowFPSLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hji25")
+
+[node name="ShowFPSButton" type="CheckButton" parent="ScrollContainer/ScrollMargin/VideoMenu/ShowFPS" groups=["CheckButtons"]]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../MaxFPS/MaxFPSButton")
+focus_neighbor_bottom = NodePath("../../AntiAlias/AAButton")
+focus_next = NodePath("../../AntiAlias/AAButton")
+focus_previous = NodePath("../../MaxFPS/MaxFPSButton")
+icon_alignment = 1
+
+[node name="AntiAlias" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/VideoMenu"]
+layout_mode = 2
+
+[node name="AALabel" type="Label" parent="ScrollContainer/ScrollMargin/VideoMenu/AntiAlias"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Anti-Alias"
+
+[node name="AAHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/AntiAlias/AALabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4fl6n")
+
+[node name="AAIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/AntiAlias/AALabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hji25")
+
+[node name="AAButton" type="OptionButton" parent="ScrollContainer/ScrollMargin/VideoMenu/AntiAlias" groups=["OptionButtons"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../ShowFPS/ShowFPSButton")
+focus_neighbor_bottom = NodePath("../../Brightness/BrightnessSlider")
+focus_next = NodePath("../../Brightness/BrightnessSlider")
+focus_previous = NodePath("../../ShowFPS/ShowFPSButton")
+alignment = 1
+
+[node name="Brightness" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/VideoMenu"]
+layout_mode = 2
+
+[node name="BrightnessLabel" type="Label" parent="ScrollContainer/ScrollMargin/VideoMenu/Brightness"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Brightness"
+
+[node name="BrightnessHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/Brightness/BrightnessLabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4fl6n")
+
+[node name="BrightnessIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/Brightness/BrightnessLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hji25")
+
+[node name="BrightnessSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/VideoMenu/Brightness" groups=["Sliders"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../AntiAlias/AAButton")
+focus_neighbor_bottom = NodePath("../../Contrast/ContrastSlider")
+focus_next = NodePath("../../Contrast/ContrastSlider")
+focus_previous = NodePath("../../AntiAlias/AAButton")
+min_value = 0.1
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="Contrast" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/VideoMenu"]
+layout_mode = 2
+
+[node name="ContrastLabel" type="Label" parent="ScrollContainer/ScrollMargin/VideoMenu/Contrast"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Contrast"
+
+[node name="ContrastHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/Contrast/ContrastLabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4fl6n")
+
+[node name="ContrastIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/Contrast/ContrastLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hji25")
+
+[node name="ContrastSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/VideoMenu/Contrast" groups=["Sliders"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../Brightness/BrightnessSlider")
+focus_neighbor_bottom = NodePath("../../Saturation/SaturationSlider")
+focus_next = NodePath("../../Saturation/SaturationSlider")
+focus_previous = NodePath("../../Brightness/BrightnessSlider")
+min_value = 0.1
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="Saturation" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/VideoMenu"]
+layout_mode = 2
+
+[node name="SaturationLabel" type="Label" parent="ScrollContainer/ScrollMargin/VideoMenu/Saturation"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Saturation
+"
+
+[node name="SaturationHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/Saturation/SaturationLabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4fl6n")
+
+[node name="SaturationIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/VideoMenu/Saturation/SaturationLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hji25")
+
+[node name="SaturationSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/VideoMenu/Saturation" groups=["Sliders"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../Contrast/ContrastSlider")
+focus_neighbor_bottom = NodePath("../../../../../BottomMenu/ResetButton")
+focus_next = NodePath("../../../../../BottomMenu/ResetButton")
+focus_previous = NodePath("../../Contrast/ContrastSlider")
+min_value = 0.1
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="BottomMenu" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.75
+anchor_right = 0.65
+anchor_bottom = 0.95
+offset_right = -437.76
+offset_bottom = -345.6
+theme = ExtResource("2_2sug3")
+
+[node name="ResetButton" type="Button" parent="BottomMenu" groups=["Buttons"]]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../ScrollContainer/ScrollMargin/VideoMenu/Saturation/SaturationSlider")
+focus_neighbor_bottom = NodePath("../BackButton")
+focus_next = NodePath("../BackButton")
+focus_previous = NodePath("../../ScrollContainer/ScrollMargin/VideoMenu/Saturation/SaturationSlider")
+text = "Reset Defaults"
+icon = ExtResource("3_hji25")
+icon_alignment = 1
+
+[node name="BackButton" type="Button" parent="BottomMenu" groups=["Buttons"]]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../ResetButton")
+focus_previous = NodePath("../ResetButton")
+text = "Back"
+icon = ExtResource("3_hji25")
+icon_alignment = 1

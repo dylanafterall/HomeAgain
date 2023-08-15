@@ -1,21 +1,118 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dgmjks8mitn4d"]
+[gd_resource type="Theme" load_steps=21 format=3 uid="uid://dgmjks8mitn4d"]
 
 [ext_resource type="FontFile" uid="uid://3sbbbx14qgjj" path="res://assets/fonts/roboto/Roboto-Medium.ttf" id="1_f8rhx"]
 [ext_resource type="Texture2D" uid="uid://b7nnrjykats3u" path="res://assets/images/sprites/nasa/star.png" id="2_3wq80"]
+[ext_resource type="Texture2D" uid="uid://36lk4vv5ebu4" path="res://assets/images/sprites/nasa/on_normal.png" id="3_crvla"]
+[ext_resource type="Texture2D" uid="uid://clvp4cjwq4ft7" path="res://assets/images/sprites/kenney_ui/grey_circle.png" id="3_rbsh5"]
+[ext_resource type="Texture2D" uid="uid://ckxmvi65l147h" path="res://assets/images/sprites/nasa/on_nasa.png" id="4_fmaoi"]
+[ext_resource type="Texture2D" uid="uid://dgjr1pa4v1dgs" path="res://assets/images/sprites/kenney_ui/nasa_red_circle.png" id="4_p5ue6"]
+[ext_resource type="Texture2D" uid="uid://cbtt8j1xubr26" path="res://assets/images/sprites/nasa/off_normal.png" id="4_tuadq"]
+[ext_resource type="Texture2D" uid="uid://olj714qktded" path="res://assets/images/sprites/kenney_ui/grey_panel.png" id="5_3vla7"]
+[ext_resource type="Texture2D" uid="uid://ckbtg0hq206k1" path="res://assets/images/sprites/kenney_ui/nasa_gray_button04.png" id="5_4gmku"]
+[ext_resource type="Texture2D" uid="uid://bs0s664b4pg57" path="res://assets/images/sprites/nasa/off_nasa.png" id="5_aqcsh"]
+[ext_resource type="Texture2D" uid="uid://bqsmlu5qkg1eu" path="res://assets/images/sprites/kenney_ui/grey_arrowDownGrey.png" id="7_37kbr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nh6m8"]
 texture = ExtResource("2_3wq80")
 modulate_color = Color(0.0431373, 0.239216, 0.568627, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_73ngb"]
+texture = ExtResource("2_3wq80")
+modulate_color = Color(0.0431373, 0.239216, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_52bsp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rqmbf"]
+texture = ExtResource("5_4gmku")
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_obk6w"]
+texture = ExtResource("5_3vla7")
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+modulate_color = Color(0.0431373, 0.239216, 0.647059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_026hm"]
+bg_color = Color(0.47451, 0.47451, 0.486275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywhob"]
+bg_color = Color(0.0431373, 0.239216, 0.568627, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gywhr"]
+bg_color = Color(0.47451, 0.47451, 0.486275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xro53"]
+bg_color = Color(0.0431373, 0.239216, 0.568627, 0.784314)
 
 [resource]
 Button/colors/font_color = Color(0.47451, 0.47451, 0.486275, 1)
 Button/colors/font_focus_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(1, 1, 1, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
-Button/colors/font_pressed_color = Color(0.0431373, 0.239216, 0.568627, 1)
+Button/colors/icon_disabled_color = Color(0, 0, 0, 0)
 Button/colors/icon_normal_color = Color(1, 1, 1, 0)
-Button/constants/outline_size = 6
+Button/colors/nasa_black_color = Color(0, 0, 0, 1)
+Button/colors/nasa_blue_color = Color(0.0431373, 0.239216, 0.568627, 1)
+Button/colors/nasa_gray_color = Color(0.47451, 0.47451, 0.486275, 1)
+Button/colors/nasa_red_color = Color(0.988235, 0.239216, 0.129412, 1)
+Button/colors/nasa_white_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 8
 Button/font_sizes/font_size = 90
 Button/fonts/font = ExtResource("1_f8rhx")
 Button/styles/focus = SubResource("StyleBoxTexture_nh6m8")
-VBoxContainer/constants/separation = 25
+Button/styles/nasa = SubResource("StyleBoxTexture_73ngb")
+CheckButton/colors/font_color = Color(0.47451, 0.47451, 0.486275, 1)
+CheckButton/colors/font_focus_color = Color(1, 1, 1, 1)
+CheckButton/colors/font_hover_color = Color(1, 1, 1, 1)
+CheckButton/colors/font_outline_color = Color(0, 0, 0, 1)
+CheckButton/colors/font_pressed_color = Color(0.47451, 0.47451, 0.486275, 1)
+CheckButton/constants/outline_size = 8
+CheckButton/font_sizes/font_size = 90
+CheckButton/fonts/font = ExtResource("1_f8rhx")
+CheckButton/icons/checked = ExtResource("3_crvla")
+CheckButton/icons/checked_nasa = ExtResource("4_fmaoi")
+CheckButton/icons/unchecked = ExtResource("4_tuadq")
+CheckButton/icons/unchecked_nasa = ExtResource("5_aqcsh")
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_52bsp")
+HSlider/constants/grabber_offset = 0
+HSlider/icons/grabber = ExtResource("3_rbsh5")
+HSlider/icons/grabber_highlight = ExtResource("4_p5ue6")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_rqmbf")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_obk6w")
+Label/colors/font_color = Color(0.47451, 0.47451, 0.486275, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/nasa_black_color = Color(0, 0, 0, 1)
+Label/colors/nasa_blue_color = Color(0.0431373, 0.239216, 0.568627, 1)
+Label/colors/nasa_gray_color = Color(0.47451, 0.47451, 0.486275, 1)
+Label/colors/nasa_red_color = Color(0.988235, 0.239216, 0.129412, 1)
+Label/colors/nasa_white_color = Color(1, 1, 1, 1)
+Label/constants/outline_size = 8
+Label/font_sizes/font_size = 90
+Label/fonts/font = ExtResource("1_f8rhx")
+OptionButton/colors/font_color = Color(0.47451, 0.47451, 0.486275, 1)
+OptionButton/colors/font_disabled_color = Color(0.180392, 0.180392, 0.180392, 1)
+OptionButton/colors/font_focus_color = Color(1, 1, 1, 1)
+OptionButton/colors/font_hover_color = Color(1, 1, 1, 1)
+OptionButton/colors/font_outline_color = Color(0, 0, 0, 1)
+OptionButton/colors/nasa_red_color = Color(0.988235, 0.239216, 0.129412, 1)
+OptionButton/constants/arrow_margin = 20
+OptionButton/constants/modulate_arrow = 0
+OptionButton/constants/outline_size = 8
+OptionButton/font_sizes/font_size = 90
+OptionButton/fonts/font = ExtResource("1_f8rhx")
+OptionButton/icons/arrow = ExtResource("7_37kbr")
+OptionButton/styles/disabled = SubResource("StyleBoxFlat_026hm")
+OptionButton/styles/focus = SubResource("StyleBoxFlat_ywhob")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_gywhr")
+PopupMenu/colors/font_color = Color(0.47451, 0.47451, 0.486275, 1)
+PopupMenu/colors/font_hover_color = Color(1, 1, 1, 1)
+PopupMenu/colors/font_outline_color = Color(0, 0, 0, 1)
+PopupMenu/constants/item_start_padding = 12
+PopupMenu/constants/outline_size = 3
+PopupMenu/constants/v_separation = 12
+PopupMenu/font_sizes/font_size = 75
+PopupMenu/fonts/font = ExtResource("1_f8rhx")
+PopupMenu/icons/radio_checked = ExtResource("4_p5ue6")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_xro53")
+VBoxContainer/constants/separation = 40

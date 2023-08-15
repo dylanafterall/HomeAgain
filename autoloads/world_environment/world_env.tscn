@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnulgaquqsmxi"]
+
+[ext_resource type="Environment" uid="uid://n4wy2k6q4spf" path="res://autoloads/world_environment/world_env.tres" id="1_e7bj8"]
+[ext_resource type="Script" path="res://autoloads/world_environment/WorldEnv.cs" id="1_iise2"]
+
+[node name="WorldEnv" type="WorldEnvironment"]
+environment = ExtResource("1_e7bj8")
+script = ExtResource("1_iise2")

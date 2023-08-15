@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://br7qghabdqebl"]
+
+[ext_resource type="Script" path="res://scenes/ui/main_menu/settings_menu/keyboard_settings/keyboard_settings.gd" id="1_0d2ip"]
+
+[node name="KeyboardSettings" type="CanvasLayer"]
+script = ExtResource("1_0d2ip")
