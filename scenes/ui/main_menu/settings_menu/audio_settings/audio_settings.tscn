@@ -1,6 +1,361 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcu3r45b84q1e"]
+[gd_scene load_steps=6 format=3 uid="uid://bcu3r45b84q1e"]
 
 [ext_resource type="Script" path="res://scenes/ui/main_menu/settings_menu/audio_settings/audio_settings.gd" id="1_pchpa"]
+[ext_resource type="Theme" uid="uid://dgmjks8mitn4d" path="res://scenes/ui/main_menu/menu_theme.tres" id="2_o2fof"]
+[ext_resource type="Texture2D" uid="uid://b7nnrjykats3u" path="res://assets/images/sprites/nasa/star.png" id="3_eewuj"]
+[ext_resource type="Texture2D" uid="uid://dekg8htew61cv" path="res://assets/images/sprites/nasa/redvector.png" id="4_6heqk"]
+[ext_resource type="Script" path="res://scenes/ui/main_menu/settings_menu/audio_settings/volume_slider.gd" id="5_0h3gq"]
 
 [node name="AudioSettings" type="CanvasLayer"]
 script = ExtResource("1_pchpa")
+back_scene = "res://scenes/ui/main_menu/settings_menu/settings_menu.tscn"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.2
+anchor_right = 0.75
+anchor_bottom = 0.7
+offset_left = -62.0
+offset_top = 6.0
+offset_right = -62.0
+offset_bottom = 6.00003
+
+[node name="ScrollMargin" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="AudioMenu" type="VBoxContainer" parent="ScrollContainer/ScrollMargin"]
+layout_mode = 2
+theme = ExtResource("2_o2fof")
+
+[node name="Mute" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/AudioMenu"]
+layout_mode = 2
+
+[node name="MuteLabel" type="Label" parent="ScrollContainer/ScrollMargin/AudioMenu/Mute"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Mute All"
+
+[node name="MuteHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/AudioMenu/Mute/MuteLabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_eewuj")
+
+[node name="MuteIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/AudioMenu/Mute/MuteLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6heqk")
+
+[node name="MuteButton" type="CheckButton" parent="ScrollContainer/ScrollMargin/AudioMenu/Mute" groups=["CheckButtons"]]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_bottom = NodePath("../../Master/MasterSlider")
+focus_next = NodePath("../../Master/MasterSlider")
+
+[node name="Master" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/AudioMenu"]
+layout_mode = 2
+
+[node name="MasterLabel" type="Label" parent="ScrollContainer/ScrollMargin/AudioMenu/Master"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Master Volume"
+
+[node name="MasterHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/AudioMenu/Master/MasterLabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_eewuj")
+
+[node name="MasterIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/AudioMenu/Master/MasterLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6heqk")
+
+[node name="MasterSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/Master" groups=["Sliders"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../Mute/MuteButton")
+focus_neighbor_bottom = NodePath("../../Music/MusicSlider")
+focus_next = NodePath("../../Music/MusicSlider")
+focus_previous = NodePath("../../Mute/MuteButton")
+max_value = 1.0
+step = 0.05
+script = ExtResource("5_0h3gq")
+audio_bus_name = "Master"
+
+[node name="Music" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/AudioMenu"]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="ScrollContainer/ScrollMargin/AudioMenu/Music"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/AudioMenu/Music/MusicLabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_eewuj")
+
+[node name="MusicIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/AudioMenu/Music/MusicLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6heqk")
+
+[node name="MusicSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/Music" groups=["Sliders"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../Master/MasterSlider")
+focus_neighbor_bottom = NodePath("../../SFX/SFXSlider")
+focus_next = NodePath("../../SFX/SFXSlider")
+focus_previous = NodePath("../../Master/MasterSlider")
+max_value = 1.0
+step = 0.05
+script = ExtResource("5_0h3gq")
+audio_bus_name = "Music"
+
+[node name="SFX" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/AudioMenu"]
+layout_mode = 2
+
+[node name="SFXLabel" type="Label" parent="ScrollContainer/ScrollMargin/AudioMenu/SFX"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SFXHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/AudioMenu/SFX/SFXLabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_eewuj")
+
+[node name="SFXIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/AudioMenu/SFX/SFXLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6heqk")
+
+[node name="SFXSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/SFX" groups=["Sliders"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../Music/MusicSlider")
+focus_neighbor_bottom = NodePath("../../Speech/SpeechSlider")
+focus_next = NodePath("../../Speech/SpeechSlider")
+focus_previous = NodePath("../../Music/MusicSlider")
+max_value = 1.0
+step = 0.05
+script = ExtResource("5_0h3gq")
+audio_bus_name = "SFX"
+
+[node name="Speech" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/AudioMenu"]
+layout_mode = 2
+
+[node name="SpeechLabel" type="Label" parent="ScrollContainer/ScrollMargin/AudioMenu/Speech"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Speech Volume"
+
+[node name="SpeechHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/AudioMenu/Speech/SpeechLabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_eewuj")
+
+[node name="SpeechIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/AudioMenu/Speech/SpeechLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6heqk")
+
+[node name="SpeechSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/Speech" groups=["Sliders"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../SFX/SFXSlider")
+focus_neighbor_bottom = NodePath("../../Ambience/AmbienceSlider")
+focus_next = NodePath("../../Ambience/AmbienceSlider")
+focus_previous = NodePath("../../SFX/SFXSlider")
+max_value = 1.0
+step = 0.05
+script = ExtResource("5_0h3gq")
+audio_bus_name = "Speech"
+
+[node name="Ambience" type="HBoxContainer" parent="ScrollContainer/ScrollMargin/AudioMenu"]
+layout_mode = 2
+
+[node name="AmbienceLabel" type="Label" parent="ScrollContainer/ScrollMargin/AudioMenu/Ambience"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Ambience Volume"
+
+[node name="AmbienceHighlight" type="TextureRect" parent="ScrollContainer/ScrollMargin/AudioMenu/Ambience/AmbienceLabel"]
+visible = false
+modulate = Color(0.0431373, 0.239216, 0.568627, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_eewuj")
+
+[node name="AmbienceIcon" type="TextureRect" parent="ScrollContainer/ScrollMargin/AudioMenu/Ambience/AmbienceLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6heqk")
+
+[node name="AmbienceSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/Ambience" groups=["Sliders"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../Speech/SpeechSlider")
+focus_neighbor_bottom = NodePath("../../../../../BottomMenu/ResetButton")
+focus_next = NodePath("../../../../../BottomMenu/ResetButton")
+focus_previous = NodePath("../../Speech/SpeechSlider")
+max_value = 1.0
+step = 0.05
+script = ExtResource("5_0h3gq")
+audio_bus_name = "Ambience"
+
+[node name="BottomMenu" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.75
+anchor_right = 0.6
+anchor_bottom = 0.95
+theme = ExtResource("2_o2fof")
+
+[node name="ResetButton" type="Button" parent="BottomMenu" groups=["Buttons"]]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../ScrollContainer/ScrollMargin/AudioMenu/Ambience/AmbienceSlider")
+focus_neighbor_bottom = NodePath("../BackButton")
+focus_next = NodePath("../BackButton")
+focus_previous = NodePath("../../ScrollContainer/ScrollMargin/AudioMenu/Ambience/AmbienceSlider")
+text = "Reset Defaults"
+icon = ExtResource("4_6heqk")
+icon_alignment = 1
+
+[node name="BackButton" type="Button" parent="BottomMenu" groups=["Buttons"]]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../ResetButton")
+focus_previous = NodePath("../ResetButton")
+text = "Back"
+icon = ExtResource("4_6heqk")
+icon_alignment = 1

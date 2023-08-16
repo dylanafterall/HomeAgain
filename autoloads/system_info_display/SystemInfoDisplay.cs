@@ -6,7 +6,6 @@ public partial class SystemInfoDisplay : CanvasLayer
     // private variables -------------------------------------------------------
     
     private Label _fpsLabel;
-    private bool _fpsVisible;
 
     // -------------------------------------------------------------------------
     // built-in virtual methods ------------------------------------------------
@@ -21,7 +20,7 @@ public partial class SystemInfoDisplay : CanvasLayer
     // called every frame, as often as possible   
     public override void _Process(double delta)
     {
-        if (_fpsVisible)
+        if (_fpsLabel.Visible)
         {
             _fpsLabel.Text = ((int)Engine.GetFramesPerSecond()).ToString();
         }

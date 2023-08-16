@@ -1,10 +1,12 @@
 class_name SettingsMenu
-extends CanvasLayer
+extends Control
 
 # ------------------------------------------------------------------------------
 # @export variables ------------------------------------------------------------
 
 @export_group("SceneSwitcher Settings")
+@export_file var video_scene
+@export_file var audio_scene
 @export_file var back_scene
 @export_group("")
 
@@ -75,9 +77,9 @@ func _move_from_button(button: Button) -> void:
 func _animate_button_press(button: Button) -> void:
 	match button:
 		video_button:
-			print("video")
+			SceneSwitcher.GoToScene(video_scene)
 		audio_button:
-			print("audio")
+			SceneSwitcher.GoToScene(audio_scene)
 		accessibility_button:
 			print("accessibility")
 		controller_button:

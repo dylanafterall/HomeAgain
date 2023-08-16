@@ -194,6 +194,8 @@ func _checkbutton_action(pressed: bool, button: CheckButton) -> void:
             vsync_button:
                 DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
                 max_fps_button.disabled = false
+                var new_maxfps = _maxfps_options.get(max_fps_button.get_item_text(max_fps_button.get_selected()))
+                Engine.set_max_fps(new_maxfps)
             show_fps_button:
                 SystemInfoDisplay.HideFPS()
                 
@@ -241,7 +243,6 @@ func _button_action(object) -> void:
         reset_button:
             reset_defaults()
         back_button:
-            print("clicked back")
             SceneSwitcher.GoToScene(back_scene)
             
             

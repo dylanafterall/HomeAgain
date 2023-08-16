@@ -6,3 +6,4 @@
 script = ExtResource("1_6whdg")
 
 [node name="SceneSwitchAudio" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

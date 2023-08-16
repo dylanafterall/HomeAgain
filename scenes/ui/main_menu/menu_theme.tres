@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=21 format=3 uid="uid://dgmjks8mitn4d"]
+[gd_resource type="Theme" load_steps=25 format=3 uid="uid://dgmjks8mitn4d"]
 
 [ext_resource type="FontFile" uid="uid://3sbbbx14qgjj" path="res://assets/fonts/roboto/Roboto-Medium.ttf" id="1_f8rhx"]
 [ext_resource type="Texture2D" uid="uid://b7nnrjykats3u" path="res://assets/images/sprites/nasa/star.png" id="2_3wq80"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ckbtg0hq206k1" path="res://assets/images/sprites/kenney_ui/nasa_gray_button04.png" id="5_4gmku"]
 [ext_resource type="Texture2D" uid="uid://bs0s664b4pg57" path="res://assets/images/sprites/nasa/off_nasa.png" id="5_aqcsh"]
 [ext_resource type="Texture2D" uid="uid://bqsmlu5qkg1eu" path="res://assets/images/sprites/kenney_ui/grey_arrowDownGrey.png" id="7_37kbr"]
+[ext_resource type="Texture2D" uid="uid://c6clepitbsfe1" path="res://assets/images/sprites/kenney_ui/grey_button02.png" id="11_3oo0c"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nh6m8"]
 texture = ExtResource("2_3wq80")
@@ -24,14 +25,32 @@ modulate_color = Color(0.0431373, 0.239216, 1, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rqmbf"]
 texture = ExtResource("5_4gmku")
-expand_margin_top = 6.0
-expand_margin_bottom = 6.0
+expand_margin_top = 12.0
+expand_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_obk6w"]
 texture = ExtResource("5_3vla7")
-expand_margin_top = 8.0
-expand_margin_bottom = 8.0
+expand_margin_top = 15.0
+expand_margin_bottom = 15.0
 modulate_color = Color(0.0431373, 0.239216, 0.647059, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kdx5f"]
+texture = ExtResource("11_3oo0c")
+expand_margin_top = 12.0
+expand_margin_bottom = 12.0
+modulate_color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_khfsv"]
+texture = ExtResource("11_3oo0c")
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+modulate_color = Color(0.47451, 0.47451, 0.486275, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_twg04"]
+texture = ExtResource("11_3oo0c")
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+modulate_color = Color(0.180392, 0.180392, 0.180392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_026hm"]
 bg_color = Color(0.47451, 0.47451, 0.486275, 1)
@@ -80,6 +99,9 @@ HSlider/icons/grabber = ExtResource("3_rbsh5")
 HSlider/icons/grabber_highlight = ExtResource("4_p5ue6")
 HSlider/styles/grabber_area = SubResource("StyleBoxTexture_rqmbf")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_obk6w")
+HSlider/styles/muted_grabber_area = SubResource("StyleBoxTexture_kdx5f")
+HSlider/styles/muted_slider = SubResource("StyleBoxTexture_khfsv")
+HSlider/styles/slider = SubResource("StyleBoxTexture_twg04")
 Label/colors/font_color = Color(0.47451, 0.47451, 0.486275, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/colors/nasa_black_color = Color(0, 0, 0, 1)
