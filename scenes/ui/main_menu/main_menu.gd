@@ -30,10 +30,10 @@ func _ready() -> void:
     # lower master volume (bus index 0) when loading into main menu
     AudioServer.set_bus_volume_db(0, -7.5)
         
-    if !MusicPlayer.IsPlaying():
-        MusicPlayer.PlayMusic(background_music)
+    if !AudioPlayer.IsMusicPlaying():
+        AudioPlayer.PlayMusic(background_music)
         
-    var buttons = get_tree().get_nodes_in_group("Buttons")
+    var buttons = get_tree().get_nodes_in_group("MainButtons")
     for button in buttons:
         button.mouse_entered.connect(button.grab_focus)
         button.focus_entered.connect(_move_to_button.bind(button))
@@ -81,13 +81,15 @@ func _move_from_button(button: Button) -> void:
 func _animate_button_press(button: Button) -> void:
     match button:
         enter_button:
-            SceneSwitcher.PlayAudioEffect(enter_sfx)
+            AudioPlayer.PlaySFX(enter_sfx)
         settings_button:
-            SceneSwitcher.PlayAudioEffect(settings_sfx)
-            SceneSwitcher.GoToScene(settings_scene)
+            AudioPlayer.PlaySFX(settings_sfx)
+            SceneSwitcher.PackNextScene(settings_scene)
+            SceneSwitcher.SwitchSceneAndFree()
         exit_button:
             get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
             get_tree().quit()
+            
             
 func _on_earth_video_finished():
     earth_video.play()

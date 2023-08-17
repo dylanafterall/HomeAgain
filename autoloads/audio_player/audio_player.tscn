@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c71mqnpxat2wf"]
+
+[ext_resource type="Script" path="res://autoloads/audio_player/AudioPlayer.cs" id="1_ub3mf"]
+
+[node name="AudioPlayer" type="Node"]
+script = ExtResource("1_ub3mf")
+
+[node name="MusicAudioStream" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="SFXAudioStream" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

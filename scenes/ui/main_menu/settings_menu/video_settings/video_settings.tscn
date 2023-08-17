@@ -71,7 +71,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hji25")
 
-[node name="DisplayButton" type="CheckButton" parent="ScrollContainer/ScrollMargin/VideoMenu/Display" groups=["CheckButtons"]]
+[node name="DisplayButton" type="CheckButton" parent="ScrollContainer/ScrollMargin/VideoMenu/Display" groups=["VideoCheckButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -116,7 +116,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hji25")
 
-[node name="ResolutionButton" type="OptionButton" parent="ScrollContainer/ScrollMargin/VideoMenu/Resolution" groups=["OptionButtons"]]
+[node name="ResolutionButton" type="OptionButton" parent="ScrollContainer/ScrollMargin/VideoMenu/Resolution" groups=["VideoOptionButtons"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
@@ -164,7 +164,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hji25")
 
-[node name="VSyncButton" type="CheckButton" parent="ScrollContainer/ScrollMargin/VideoMenu/VSync" groups=["CheckButtons"]]
+[node name="VSyncButton" type="CheckButton" parent="ScrollContainer/ScrollMargin/VideoMenu/VSync" groups=["VideoCheckButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -211,7 +211,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hji25")
 
-[node name="MaxFPSButton" type="OptionButton" parent="ScrollContainer/ScrollMargin/VideoMenu/MaxFPS" groups=["OptionButtons"]]
+[node name="MaxFPSButton" type="OptionButton" parent="ScrollContainer/ScrollMargin/VideoMenu/MaxFPS" groups=["VideoOptionButtons"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
@@ -259,7 +259,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hji25")
 
-[node name="ShowFPSButton" type="CheckButton" parent="ScrollContainer/ScrollMargin/VideoMenu/ShowFPS" groups=["CheckButtons"]]
+[node name="ShowFPSButton" type="CheckButton" parent="ScrollContainer/ScrollMargin/VideoMenu/ShowFPS" groups=["VideoCheckButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -306,7 +306,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hji25")
 
-[node name="AAButton" type="OptionButton" parent="ScrollContainer/ScrollMargin/VideoMenu/AntiAlias" groups=["OptionButtons"]]
+[node name="AAButton" type="OptionButton" parent="ScrollContainer/ScrollMargin/VideoMenu/AntiAlias" groups=["VideoOptionButtons"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
@@ -354,7 +354,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hji25")
 
-[node name="BrightnessSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/VideoMenu/Brightness" groups=["Sliders"]]
+[node name="BrightnessSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/VideoMenu/Brightness" groups=["VideoSliders"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
@@ -405,7 +405,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hji25")
 
-[node name="ContrastSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/VideoMenu/Contrast" groups=["Sliders"]]
+[node name="ContrastSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/VideoMenu/Contrast" groups=["VideoSliders"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
@@ -457,7 +457,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hji25")
 
-[node name="SaturationSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/VideoMenu/Saturation" groups=["Sliders"]]
+[node name="SaturationSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/VideoMenu/Saturation" groups=["VideoSliders"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
@@ -479,7 +479,7 @@ anchor_right = 0.6
 anchor_bottom = 0.95
 theme = ExtResource("2_2sug3")
 
-[node name="ResetButton" type="Button" parent="BottomMenu" groups=["Buttons"]]
+[node name="ResetButton" type="Button" parent="BottomMenu" groups=["VideoButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../ScrollContainer/ScrollMargin/VideoMenu/Saturation/SaturationSlider")
@@ -490,7 +490,7 @@ text = "Reset Defaults"
 icon = ExtResource("3_hji25")
 icon_alignment = 1
 
-[node name="BackButton" type="Button" parent="BottomMenu" groups=["Buttons"]]
+[node name="BackButton" type="Button" parent="BottomMenu" groups=["VideoButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../ResetButton")

@@ -106,16 +106,16 @@ anchor_right = 0.6
 anchor_bottom = 0.55
 theme = ExtResource("9_721ga")
 
-[node name="EnterButton" type="Button" parent="Buttons" groups=["Buttons"]]
+[node name="EnterButton" type="Button" parent="Buttons" groups=["MainButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../SettingsButton")
 focus_next = NodePath("../SettingsButton")
-text = "Enter"
+text = "Start"
 icon = ExtResource("10_pfhq7")
 icon_alignment = 1
 
-[node name="SettingsButton" type="Button" parent="Buttons" groups=["Buttons"]]
+[node name="SettingsButton" type="Button" parent="Buttons" groups=["MainButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../EnterButton")
@@ -126,7 +126,7 @@ text = "Settings"
 icon = ExtResource("10_pfhq7")
 icon_alignment = 1
 
-[node name="ExitButton" type="Button" parent="Buttons" groups=["Buttons"]]
+[node name="ExitButton" type="Button" parent="Buttons" groups=["MainButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../SettingsButton")

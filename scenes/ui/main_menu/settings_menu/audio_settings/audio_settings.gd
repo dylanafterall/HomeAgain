@@ -37,21 +37,21 @@ extends CanvasLayer
 # called when both the node and its children have entered the scene tree
 func _ready() -> void:
     # connect signals
-    var check_buttons = get_tree().get_nodes_in_group("CheckButtons")
+    var check_buttons = get_tree().get_nodes_in_group("AudioCheckButtons")
     for check_button in check_buttons:
         check_button.mouse_entered.connect(check_button.grab_focus)
         check_button.focus_entered.connect(_move_to_object.bind(check_button))
         check_button.focus_exited.connect(_move_from_object.bind(check_button))
         check_button.toggled.connect(_checkbutton_action.bind(check_button))
         
-    var sliders = get_tree().get_nodes_in_group("Sliders")
+    var sliders = get_tree().get_nodes_in_group("AudioSliders")
     for slider in sliders:
         slider.mouse_entered.connect(slider.grab_focus)
         slider.focus_entered.connect(_move_to_object.bind(slider))
         slider.focus_exited.connect(_move_from_object.bind(slider))
         slider.value_changed.connect(_slider_action.bind(slider))   
         
-    var buttons = get_tree().get_nodes_in_group("Buttons")
+    var buttons = get_tree().get_nodes_in_group("AudioButtons")
     for button in buttons:
         button.mouse_entered.connect(button.grab_focus)
         button.focus_entered.connect(_move_to_button.bind(button))
@@ -139,14 +139,6 @@ func _move_from_button(button: Button) -> void:
     tween.play()
 
 
-func _button_action(object) -> void:
-    match object:
-        reset_button:
-            reset_defaults()
-        back_button:
-            SceneSwitcher.GoToScene(back_scene)
-
-
 func reset_defaults() -> void:
     mute_button.button_pressed = false
     
@@ -169,3 +161,12 @@ func reset_defaults() -> void:
     var ambience_index = AudioServer.get_bus_index(ambience_slider.audio_bus_name)
     AudioServer.set_bus_volume_db(ambience_index, 0.0)
     ambience_slider.value = db_to_linear(AudioServer.get_bus_volume_db(ambience_index))
+
+
+func _button_action(object) -> void:
+    match object:
+        reset_button:
+            reset_defaults()
+        back_button:
+            SceneSwitcher.PackNextScene(back_scene)
+            SceneSwitcher.SwitchSceneAndFree()

@@ -1,11 +1,12 @@
 using Godot;
 
-public partial class MusicPlayer : Node
+public partial class AudioPlayer : Node
 {
     // -------------------------------------------------------------------------
     // private variables -------------------------------------------------------
     
-    private AudioStreamPlayer _audioStreamPlayer;
+    private AudioStreamPlayer _musicStream;
+    private AudioStreamPlayer _sfxStream;
 
     // -------------------------------------------------------------------------
     // built-in virtual methods ------------------------------------------------
@@ -13,28 +14,36 @@ public partial class MusicPlayer : Node
     // called when both the node and its children have entered the scene tree
     public override void _Ready()
     {
-        _audioStreamPlayer = GetNode<AudioStreamPlayer>("MusicAudioStream");
-        _audioStreamPlayer.Finished += OnMusicPlayerFinished;
+        _musicStream = GetNode<AudioStreamPlayer>("MusicAudioStream");
+        _musicStream.Finished += OnMusicPlayerFinished;
+        
+        _sfxStream = GetNode<AudioStreamPlayer>("SFXAudioStream");
     }
 
     // -------------------------------------------------------------------------
     // public methods ----------------------------------------------------------
-
-    public bool IsPlaying()
+    
+    public void PlaySFX(AudioStream asset)
     {
-        return _audioStreamPlayer.Playing;
+        _sfxStream.Stream = asset;
+        _sfxStream.Play();
+    }
+
+    public bool IsMusicPlaying()
+    {
+        return _musicStream.Playing;
     }
 
     public void PlayMusic(AudioStream asset)
     {
         StopMusic();
-        _audioStreamPlayer.Stream = asset;
-        _audioStreamPlayer.Play();
+        _musicStream.Stream = asset;
+        _musicStream.Play();
     }
 
     public void StopMusic()
     {
-        _audioStreamPlayer.Stop();
+        _musicStream.Stop();
     }
 
     // -------------------------------------------------------------------------
@@ -42,6 +51,6 @@ public partial class MusicPlayer : Node
 
     private void OnMusicPlayerFinished()
     {
-        _audioStreamPlayer.Play();
+        _musicStream.Play();
     }
 }

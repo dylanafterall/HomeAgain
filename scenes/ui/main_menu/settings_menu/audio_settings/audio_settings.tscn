@@ -70,7 +70,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_6heqk")
 
-[node name="MuteButton" type="CheckButton" parent="ScrollContainer/ScrollMargin/AudioMenu/Mute" groups=["CheckButtons"]]
+[node name="MuteButton" type="CheckButton" parent="ScrollContainer/ScrollMargin/AudioMenu/Mute" groups=["AudioCheckButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -114,7 +114,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_6heqk")
 
-[node name="MasterSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/Master" groups=["Sliders"]]
+[node name="MasterSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/Master" groups=["AudioSliders"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
@@ -165,7 +165,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_6heqk")
 
-[node name="MusicSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/Music" groups=["Sliders"]]
+[node name="MusicSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/Music" groups=["AudioSliders"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
@@ -216,7 +216,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_6heqk")
 
-[node name="SFXSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/SFX" groups=["Sliders"]]
+[node name="SFXSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/SFX" groups=["AudioSliders"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
@@ -267,7 +267,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_6heqk")
 
-[node name="SpeechSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/Speech" groups=["Sliders"]]
+[node name="SpeechSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/Speech" groups=["AudioSliders"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
@@ -318,7 +318,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_6heqk")
 
-[node name="AmbienceSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/Ambience" groups=["Sliders"]]
+[node name="AmbienceSlider" type="HSlider" parent="ScrollContainer/ScrollMargin/AudioMenu/Ambience" groups=["AudioSliders"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
@@ -340,7 +340,7 @@ anchor_right = 0.6
 anchor_bottom = 0.95
 theme = ExtResource("2_o2fof")
 
-[node name="ResetButton" type="Button" parent="BottomMenu" groups=["Buttons"]]
+[node name="ResetButton" type="Button" parent="BottomMenu" groups=["AudioButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../ScrollContainer/ScrollMargin/AudioMenu/Ambience/AmbienceSlider")
@@ -351,7 +351,7 @@ text = "Reset Defaults"
 icon = ExtResource("4_6heqk")
 icon_alignment = 1
 
-[node name="BackButton" type="Button" parent="BottomMenu" groups=["Buttons"]]
+[node name="BackButton" type="Button" parent="BottomMenu" groups=["AudioButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../ResetButton")

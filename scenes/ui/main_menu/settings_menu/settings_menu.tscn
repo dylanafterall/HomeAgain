@@ -79,7 +79,7 @@ offset_right = -9.15527e-05
 offset_bottom = 78.9999
 theme = ExtResource("4_ehy2t")
 
-[node name="VideoButton" type="Button" parent="MenuLayer/Buttons" groups=["Buttons"]]
+[node name="VideoButton" type="Button" parent="MenuLayer/Buttons" groups=["SettingsButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../AudioButton")
@@ -88,7 +88,7 @@ text = "Video"
 icon = ExtResource("5_rjepr")
 icon_alignment = 1
 
-[node name="AudioButton" type="Button" parent="MenuLayer/Buttons" groups=["Buttons"]]
+[node name="AudioButton" type="Button" parent="MenuLayer/Buttons" groups=["SettingsButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../VideoButton")
@@ -99,7 +99,7 @@ text = "Audio"
 icon = ExtResource("5_rjepr")
 icon_alignment = 1
 
-[node name="AccessibilityButton" type="Button" parent="MenuLayer/Buttons" groups=["Buttons"]]
+[node name="AccessibilityButton" type="Button" parent="MenuLayer/Buttons" groups=["SettingsButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../AudioButton")
@@ -110,7 +110,7 @@ text = "Accessibility"
 icon = ExtResource("5_rjepr")
 icon_alignment = 1
 
-[node name="ControllerButton" type="Button" parent="MenuLayer/Buttons" groups=["Buttons"]]
+[node name="ControllerButton" type="Button" parent="MenuLayer/Buttons" groups=["SettingsButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../AccessibilityButton")
@@ -121,7 +121,7 @@ text = "Controller"
 icon = ExtResource("5_rjepr")
 icon_alignment = 1
 
-[node name="KeyboardButton" type="Button" parent="MenuLayer/Buttons" groups=["Buttons"]]
+[node name="KeyboardButton" type="Button" parent="MenuLayer/Buttons" groups=["SettingsButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../ControllerButton")
@@ -132,7 +132,7 @@ text = "Keyboard"
 icon = ExtResource("5_rjepr")
 icon_alignment = 1
 
-[node name="CreditsButton" type="Button" parent="MenuLayer/Buttons" groups=["Buttons"]]
+[node name="CreditsButton" type="Button" parent="MenuLayer/Buttons" groups=["SettingsButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../KeyboardButton")
@@ -147,7 +147,7 @@ icon_alignment = 1
 layout_mode = 2
 theme_override_constants/margin_top = 175
 
-[node name="BackButton" type="Button" parent="MenuLayer/Buttons/BackMargin" groups=["Buttons"]]
+[node name="BackButton" type="Button" parent="MenuLayer/Buttons/BackMargin" groups=["SettingsButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../CreditsButton")

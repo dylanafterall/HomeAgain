@@ -70,28 +70,28 @@ var _maxfps_options: Dictionary = {
 # called when both the node and its children have entered the scene tree
 func _ready() -> void:
     # connect signals	
-    var option_buttons = get_tree().get_nodes_in_group("OptionButtons")
+    var option_buttons = get_tree().get_nodes_in_group("VideoOptionButtons")
     for option_button in option_buttons:
         option_button.mouse_entered.connect(option_button.grab_focus)
         option_button.focus_entered.connect(_move_to_object.bind(option_button))
         option_button.focus_exited.connect(_move_from_object.bind(option_button))
         option_button.item_selected.connect(_optionbutton_action.bind(option_button))
         
-    var check_buttons = get_tree().get_nodes_in_group("CheckButtons")
+    var check_buttons = get_tree().get_nodes_in_group("VideoCheckButtons")
     for check_button in check_buttons:
         check_button.mouse_entered.connect(check_button.grab_focus)
         check_button.focus_entered.connect(_move_to_object.bind(check_button))
         check_button.focus_exited.connect(_move_from_object.bind(check_button))
         check_button.toggled.connect(_checkbutton_action.bind(check_button))
         
-    var sliders = get_tree().get_nodes_in_group("Sliders")
+    var sliders = get_tree().get_nodes_in_group("VideoSliders")
     for slider in sliders:
         slider.mouse_entered.connect(slider.grab_focus)
         slider.focus_entered.connect(_move_to_object.bind(slider))
         slider.focus_exited.connect(_move_from_object.bind(slider))
         slider.value_changed.connect(_slider_action.bind(slider))   
         
-    var buttons = get_tree().get_nodes_in_group("Buttons")
+    var buttons = get_tree().get_nodes_in_group("VideoButtons")
     for button in buttons:
         button.mouse_entered.connect(button.grab_focus)
         button.focus_entered.connect(_move_to_button.bind(button))
@@ -236,15 +236,7 @@ func _move_from_button(button: Button) -> void:
         0.2
     )
     tween.play()
-        
-    
-func _button_action(object) -> void:	
-    match object:
-        reset_button:
-            reset_defaults()
-        back_button:
-            SceneSwitcher.GoToScene(back_scene)
-            
+       
             
 func reset_defaults() -> void:
     display_button.button_pressed = false
@@ -257,3 +249,12 @@ func reset_defaults() -> void:
     brightness_slider.set_value(WorldEnv.get_environment().get_adjustment_brightness()) 
     contrast_slider.set_value(WorldEnv.get_environment().get_adjustment_contrast()) 
     saturation_slider.set_value(WorldEnv.get_environment().get_adjustment_saturation()) 
+    
+    
+func _button_action(object) -> void:	
+    match object:
+        reset_button:
+            reset_defaults()
+        back_button:
+            SceneSwitcher.PackNextScene(back_scene)
+            SceneSwitcher.SwitchSceneAndFree()
