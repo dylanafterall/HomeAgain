@@ -13,7 +13,7 @@ public partial class SystemInfoDisplay : CanvasLayer
     // called when both the node and its children have entered the scene tree
     public override void _Ready()
     {
-        _fpsLabel = GetNode<Label>("CurrentFPS");
+        _fpsLabel = GetNode<Label>("InfoMenu/CurrentFPS");
         HideFPS();
     }
 

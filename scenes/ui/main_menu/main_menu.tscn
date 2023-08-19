@@ -22,6 +22,7 @@ script = ExtResource("1_wdndi")
 background_music = ExtResource("2_cn443")
 enter_sfx = ExtResource("3_gxq2v")
 settings_sfx = ExtResource("4_jgh8s")
+game_scene = "res://scenes/main.tscn"
 settings_scene = "res://scenes/ui/main_menu/settings_menu/settings_menu.tscn"
 
 [node name="BlackBackground" type="ColorRect" parent="."]

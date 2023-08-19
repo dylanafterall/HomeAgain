@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=25 format=3 uid="uid://dgmjks8mitn4d"]
+[gd_resource type="Theme" load_steps=27 format=3 uid="uid://dgmjks8mitn4d"]
 
 [ext_resource type="FontFile" uid="uid://3sbbbx14qgjj" path="res://assets/fonts/roboto/Roboto-Medium.ttf" id="1_f8rhx"]
 [ext_resource type="Texture2D" uid="uid://b7nnrjykats3u" path="res://assets/images/sprites/nasa/star.png" id="2_3wq80"]
@@ -63,6 +63,14 @@ bg_color = Color(0.47451, 0.47451, 0.486275, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xro53"]
 bg_color = Color(0.0431373, 0.239216, 0.568627, 0.784314)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_25f34"]
+texture = ExtResource("11_3oo0c")
+modulate_color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pfqcx"]
+texture = ExtResource("11_3oo0c")
+modulate_color = Color(0.47451, 0.47451, 0.486275, 1)
 
 [resource]
 Button/colors/font_color = Color(0.47451, 0.47451, 0.486275, 1)
@@ -137,4 +145,11 @@ PopupMenu/font_sizes/font_size = 75
 PopupMenu/fonts/font = ExtResource("1_f8rhx")
 PopupMenu/icons/radio_checked = ExtResource("4_p5ue6")
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_xro53")
+ProgressBar/colors/font_color = Color(1, 1, 1, 1)
+ProgressBar/colors/font_outline_color = Color(0.988235, 0.239216, 0.129412, 1)
+ProgressBar/constants/outline_size = 6
+ProgressBar/font_sizes/font_size = 90
+ProgressBar/fonts/font = ExtResource("1_f8rhx")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_25f34")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_pfqcx")
 VBoxContainer/constants/separation = 40

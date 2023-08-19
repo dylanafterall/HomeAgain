@@ -2,43 +2,15 @@ class_name VideoSettings
 extends CanvasLayer
 
 # ------------------------------------------------------------------------------
-# @export variables ------------------------------------------------------------
+# signals ----------------------------------------------------------------------
 
-@export_group("SceneSwitcher Settings")
-@export_file var back_scene
-@export_group("")
-
-
-# ------------------------------------------------------------------------------
-# private variables ------------------------------------------------------------
-
-var _resolutions: Dictionary = {
-    "1280 x 720":Vector2(1280, 720),
-    "1920 x 1080":Vector2(1920, 1080),
-    "2560 x 1440":Vector2(2560, 1440),
-    "3840 x 2160":Vector2(3840, 2160),
-    "Native Resolution":Vector2(0,0),
-}
-
-var _aa_options: Dictionary = {
-    "Disabled (Fastest)":Viewport.MSAA_DISABLED,
-    "2x (Average)":Viewport.MSAA_2X,
-    "4x (Slow)":Viewport.MSAA_4X,
-    "8x (Slowest)":Viewport.MSAA_8X,
-}
-
-var _maxfps_options: Dictionary = {
-    "30":30,
-    "60":60,
-    "120":120,
-    "240":240,
-    "No Limit":0,
-}
+signal back_from_video
 
 
 # ------------------------------------------------------------------------------
 # @onready variables -----------------------------------------------------------
 
+@onready var defaults = %Defaults
 @onready var display_button = %DisplayButton
 @onready var resolution_button = %ResolutionButton
 @onready var vsync_button = %VSyncButton
@@ -98,9 +70,7 @@ func _ready() -> void:
         button.focus_exited.connect(_move_from_button.bind(button))
         button.pressed.connect(_button_action.bind(button))
         
-    # setup button data
-    _resolutions["Native Resolution"] = DisplayServer.screen_get_size()
-        
+    # setup button data        
     add_resolutions()
     add_aa_options()
     add_maxfps_options()
@@ -113,23 +83,23 @@ func _ready() -> void:
 # private methods --------------------------------------------------------------
 
 func add_resolutions() -> void:
-    for resolution in _resolutions:
+    for resolution in defaults.RESOLUTION_OPTIONS:
         resolution_button.add_item(resolution)
     
 
 func add_aa_options() -> void:
-    for aa_option in _aa_options:
+    for aa_option in defaults.AA_OPTIONS:
         aa_button.add_item(aa_option)
         
         
 func add_maxfps_options() -> void:
-    for maxfps_option in _maxfps_options:
+    for maxfps_option in defaults.MAXFPS_OPTIONS:
         max_fps_button.add_item(maxfps_option)
         
         
 func _move_to_object(object) -> void:
     var label: Label = _labels[object]
-    label.add_theme_color_override("font_color", label.get_theme_color("nasa_white_color"))
+    label.add_theme_color_override("font_color", defaults.NASA_WHITE)
     label.get_child(0).visible = true	
     label.get_child(1).visible = true	
     
@@ -141,7 +111,7 @@ func _move_to_object(object) -> void:
         if object.disabled == true:
             object.add_theme_stylebox_override("focus", object.get_theme_stylebox("disabled"))
         else:
-            object.add_theme_color_override("font_outline_color", object.get_theme_color("nasa_red_color"))
+            object.add_theme_color_override("font_outline_color", defaults.NASA_RED)
         
     
 func _move_from_object(object) -> void:    
@@ -164,13 +134,13 @@ func _move_from_object(object) -> void:
 func _optionbutton_action(index: int, button: OptionButton) -> void:	
     match button:
         resolution_button:
-            var new_size: Vector2 = _resolutions.get(resolution_button.get_item_text(index))
+            var new_size: Vector2 = defaults.RESOLUTION_OPTIONS.get(resolution_button.get_item_text(index))
             get_viewport().set_size(new_size)
         aa_button:
-            var new_aa = _aa_options.get(aa_button.get_item_text(index))
+            var new_aa = defaults.AA_OPTIONS.get(aa_button.get_item_text(index))
             get_viewport().msaa_2d = new_aa
         max_fps_button:
-            var new_maxfps = _maxfps_options.get(max_fps_button.get_item_text(index))
+            var new_maxfps = defaults.MAXFPS_OPTIONS.get(max_fps_button.get_item_text(index))
             Engine.set_max_fps(new_maxfps)
             
 
@@ -178,7 +148,7 @@ func _checkbutton_action(pressed: bool, button: CheckButton) -> void:
     if pressed:
         match button:
             display_button:
-                resolution_button.select(_resolutions.size() - 1)   # native res
+                resolution_button.select(defaults.RESOLUTION_OPTIONS.size() - 1)   # native res
                 resolution_button.disabled = true
                 DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
             vsync_button:
@@ -194,7 +164,7 @@ func _checkbutton_action(pressed: bool, button: CheckButton) -> void:
             vsync_button:
                 DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
                 max_fps_button.disabled = false
-                var new_maxfps = _maxfps_options.get(max_fps_button.get_item_text(max_fps_button.get_selected()))
+                var new_maxfps = defaults.MAXFPS_OPTIONS.get(max_fps_button.get_item_text(max_fps_button.get_selected()))
                 Engine.set_max_fps(new_maxfps)
             show_fps_button:
                 SystemInfoDisplay.HideFPS()
@@ -239,16 +209,18 @@ func _move_from_button(button: Button) -> void:
        
             
 func reset_defaults() -> void:
-    display_button.button_pressed = false
-    resolution_button.select(_resolutions.size() - 1)    # native res by default
-    vsync_button.button_pressed = true
-    max_fps_button.select(1)                            # 60 fps cap by default
-    max_fps_button.disabled = true                      # due to vsync default
-    show_fps_button.button_pressed = false
-    aa_button.select(2)                                 # x4 msaa by default
-    brightness_slider.set_value(WorldEnv.get_environment().get_adjustment_brightness()) 
-    contrast_slider.set_value(WorldEnv.get_environment().get_adjustment_contrast()) 
-    saturation_slider.set_value(WorldEnv.get_environment().get_adjustment_saturation()) 
+    display_button.button_pressed = defaults.FULLSCREEN
+    resolution_button.select(defaults.RESOLUTION_INDEX)
+    get_viewport().set_size(defaults.RESOLUTION)
+    vsync_button.button_pressed = defaults.VSYNC
+    max_fps_button.select(defaults.MAX_FPS_INDEX)
+    max_fps_button.disabled = defaults.MAX_FPS_DISABLED
+    show_fps_button.button_pressed = defaults.SHOW_FPS
+    aa_button.select(defaults.ANTI_ALIAS_INDEX)
+    get_viewport().msaa_2d = defaults.ANTI_ALIAS
+    brightness_slider.set_value(defaults.BRIGHTNESS)
+    contrast_slider.set_value(defaults.CONTRAST)
+    saturation_slider.set_value(defaults.SATURATION)
     
     
 func _button_action(object) -> void:	
@@ -256,5 +228,4 @@ func _button_action(object) -> void:
         reset_button:
             reset_defaults()
         back_button:
-            SceneSwitcher.PackNextScene(back_scene)
-            SceneSwitcher.SwitchSceneAndFree()
+            back_from_video.emit()

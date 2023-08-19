@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcu3r45b84q1e"]
+[gd_scene load_steps=7 format=3 uid="uid://bcu3r45b84q1e"]
 
 [ext_resource type="Script" path="res://scenes/ui/main_menu/settings_menu/audio_settings/audio_settings.gd" id="1_pchpa"]
+[ext_resource type="Script" path="res://scenes/ui/main_menu/settings_menu/default_settings.gd" id="2_ckq4c"]
 [ext_resource type="Theme" uid="uid://dgmjks8mitn4d" path="res://scenes/ui/main_menu/menu_theme.tres" id="2_o2fof"]
 [ext_resource type="Texture2D" uid="uid://b7nnrjykats3u" path="res://assets/images/sprites/nasa/star.png" id="3_eewuj"]
 [ext_resource type="Texture2D" uid="uid://dekg8htew61cv" path="res://assets/images/sprites/nasa/redvector.png" id="4_6heqk"]
@@ -8,7 +9,10 @@
 
 [node name="AudioSettings" type="CanvasLayer"]
 script = ExtResource("1_pchpa")
-back_scene = "res://scenes/ui/main_menu/settings_menu/settings_menu.tscn"
+
+[node name="Defaults" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_ckq4c")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 anchors_preset = -1

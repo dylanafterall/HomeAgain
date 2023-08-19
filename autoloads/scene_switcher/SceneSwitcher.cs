@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic; 
 
 public partial class SceneSwitcher : Node
 {
@@ -12,7 +13,7 @@ public partial class SceneSwitcher : Node
     // private variables -------------------------------------------------------
     
     private Node CurrentScene { get; set; }
-    private PackedScene _nextScenePacked;
+    private AnimationPlayer _animationPlayer;
 
     // -------------------------------------------------------------------------
     // built-in virtual methods ------------------------------------------------
@@ -23,16 +24,12 @@ public partial class SceneSwitcher : Node
         Viewport root = GetTree().Root;
         // the last child of root is the loaded (non-autoload) scene
         CurrentScene = root.GetChild(root.GetChildCount() - 1);
+        
+        _animationPlayer = GetNode<AnimationPlayer>("SceneSwitchAnimation");
     }
 
     // -------------------------------------------------------------------------
     // public methods ----------------------------------------------------------
-
-    // manually prepare the next scene 
-    public void PackNextScene(string scenePath)
-    {
-        _nextScenePacked = (PackedScene)GD.Load(scenePath);
-    }
 
     // manually delete previous scene (not needed if SwitchSceneAndFree used)
     public void FreePreviousScene()
@@ -43,14 +40,19 @@ public partial class SceneSwitcher : Node
     // free (delete) the outgoing scene 
     // pro: less cpu and memory usage
     // con: returning to previous scene requires reloading
-    public void SwitchSceneAndFree()
+    public async void SwitchSceneAndFree(PackedScene next, string animation)
     {
         // save reference of scene we're exiting
         PreviousScene = CurrentScene;
+        
+        _animationPlayer.Play(animation);
+        await ToSignal(_animationPlayer, "animation_finished");
 
         // instance new scene and add to root
-        CurrentScene = _nextScenePacked.Instantiate();
+        CurrentScene = next.Instantiate();
         GetTree().Root.AddChild(CurrentScene);
+        
+        _animationPlayer.PlayBackwards(animation);
         
         // queue previous scene and its children for deletion at end of frame
         PreviousScene.QueueFree();
@@ -65,7 +67,7 @@ public partial class SceneSwitcher : Node
     // con: more data kept in memory
     // con: cpu now processing multiple scenes simultaneously 
     // con: requires setting node visibilities, collision detection, etc.
-    public void SwitchSceneAndHide()
+    public async void SwitchSceneAndHide(PackedScene next)
     {
     }
 
@@ -73,12 +75,17 @@ public partial class SceneSwitcher : Node
     // pro: simpler than changing visibilities, just remove/add child node
     // pro: cpu processing stops for previous scene
     // con: cpu processing stoppage means previous scene data can grow stale
-    public void SwitchSceneAndRemove()
+    public async void SwitchSceneAndRemove(PackedScene next, string animation)
     {
         PreviousScene = CurrentScene;
         
-        CurrentScene = _nextScenePacked.Instantiate();
+        _animationPlayer.Play(animation);
+        await ToSignal(_animationPlayer, "animation_finished");
+        
+        CurrentScene = next.Instantiate();
         GetTree().Root.AddChild(CurrentScene);
+        
+        _animationPlayer.PlayBackwards(animation);
         
         // rather than free/delete the outgoing scene, only remove from tree
         GetTree().Root.RemoveChild(PreviousScene);

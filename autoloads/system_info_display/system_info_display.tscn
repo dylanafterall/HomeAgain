@@ -7,16 +7,45 @@
 layer = 2
 script = ExtResource("1_ubtvs")
 
-[node name="CurrentFPS" type="Label" parent="."]
-unique_name_in_owner = true
+[node name="InfoMenu" type="VBoxContainer" parent="."]
 anchors_preset = -1
 anchor_left = 0.05
-anchor_top = 0.85
+anchor_top = 0.7
 anchor_right = 0.15
-anchor_bottom = 0.95
-offset_right = -0.280012
-offset_bottom = 0.999998
+anchor_bottom = 0.9
 theme = ExtResource("1_0wnra")
+theme_override_constants/separation = 75
+
+[node name="CurrentFPS" type="Label" parent="InfoMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.988235, 0.239216, 0.129412, 1)
 text = "FPS"
 metadata/_edit_use_anchors_ = true
+
+[node name="Speedrun" type="Control" parent="InfoMenu"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="SpeedrunLabel" type="Label" parent="InfoMenu/Speedrun"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -54.5
+offset_right = 305.0
+offset_bottom = 54.5
+grow_vertical = 2
+text = "0:00:00.00"
+
+[node name="SpeedrunTimer" type="Timer" parent="InfoMenu/Speedrun"]
+
+[node name="LoadProgress" type="Label" parent="InfoMenu"]
+visible = false
+custom_minimum_size = Vector2(400, 125)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.988235, 0.239216, 0.129412, 1)
+text = "---LOADING---"

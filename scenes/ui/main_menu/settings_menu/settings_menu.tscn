@@ -1,10 +1,73 @@
-[gd_scene load_steps=6 format=3 uid="uid://rqvgycx2xwq2"]
+[gd_scene load_steps=11 format=3 uid="uid://rqvgycx2xwq2"]
 
 [ext_resource type="Script" path="res://scenes/ui/main_menu/settings_menu/settings_menu.gd" id="1_wi3lh"]
 [ext_resource type="Texture2D" uid="uid://cispw53h6wn66" path="res://assets/images/sprites/nasa/moonstill.png" id="2_0u0jo"]
 [ext_resource type="VideoStream" path="res://assets/video/phases_2021_plain_1080p30.ogv" id="3_5xe8c"]
 [ext_resource type="Theme" uid="uid://dgmjks8mitn4d" path="res://scenes/ui/main_menu/menu_theme.tres" id="4_ehy2t"]
 [ext_resource type="Texture2D" uid="uid://dekg8htew61cv" path="res://assets/images/sprites/nasa/redvector.png" id="5_rjepr"]
+[ext_resource type="PackedScene" uid="uid://bcu3r45b84q1e" path="res://scenes/ui/main_menu/settings_menu/audio_settings/audio_settings.tscn" id="6_smh24"]
+[ext_resource type="PackedScene" uid="uid://bq3djufvhff5l" path="res://scenes/ui/main_menu/settings_menu/video_settings/video_settings.tscn" id="7_parav"]
+
+[sub_resource type="Animation" id="Animation_yikbg"]
+resource_name = "base_to_audio"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BaseSettings:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-3840, 2.08165e-12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioSettings:offset")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3840, 2.08165e-12), Vector2(2.08165e-12, 2.08165e-12)]
+}
+
+[sub_resource type="Animation" id="Animation_5x4qn"]
+resource_name = "base_to_video"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BaseSettings:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-3840, 2.08165e-12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VideoSettings:offset")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3840, 2.08165e-12), Vector2(2.08165e-12, 2.08165e-12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6rnlb"]
+_data = {
+"base_to_audio": SubResource("Animation_yikbg"),
+"base_to_video": SubResource("Animation_5x4qn")
+}
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -14,8 +77,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wi3lh")
-video_scene = "res://scenes/ui/main_menu/settings_menu/video_settings/video_settings.tscn"
-audio_scene = "res://scenes/ui/main_menu/settings_menu/audio_settings/audio_settings.tscn"
 back_scene = "res://scenes/ui/main_menu/main_menu.tscn"
 
 [node name="BlackBackground" type="ColorRect" parent="."]
@@ -65,9 +126,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.86)
 
-[node name="MenuLayer" type="CanvasLayer" parent="."]
+[node name="BaseSettings" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 
-[node name="Buttons" type="VBoxContainer" parent="MenuLayer"]
+[node name="Buttons" type="VBoxContainer" parent="BaseSettings"]
 anchors_preset = -1
 anchor_left = 0.4
 anchor_top = 0.15
@@ -75,11 +137,9 @@ anchor_right = 0.6
 anchor_bottom = 0.85
 offset_left = -2.28882e-05
 offset_top = -1.28746e-05
-offset_right = -9.15527e-05
-offset_bottom = 78.9999
 theme = ExtResource("4_ehy2t")
 
-[node name="VideoButton" type="Button" parent="MenuLayer/Buttons" groups=["SettingsButtons"]]
+[node name="VideoButton" type="Button" parent="BaseSettings/Buttons" groups=["SettingsButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../AudioButton")
@@ -88,7 +148,7 @@ text = "Video"
 icon = ExtResource("5_rjepr")
 icon_alignment = 1
 
-[node name="AudioButton" type="Button" parent="MenuLayer/Buttons" groups=["SettingsButtons"]]
+[node name="AudioButton" type="Button" parent="BaseSettings/Buttons" groups=["SettingsButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../VideoButton")
@@ -99,7 +159,7 @@ text = "Audio"
 icon = ExtResource("5_rjepr")
 icon_alignment = 1
 
-[node name="AccessibilityButton" type="Button" parent="MenuLayer/Buttons" groups=["SettingsButtons"]]
+[node name="AccessibilityButton" type="Button" parent="BaseSettings/Buttons" groups=["SettingsButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../AudioButton")
@@ -110,7 +170,7 @@ text = "Accessibility"
 icon = ExtResource("5_rjepr")
 icon_alignment = 1
 
-[node name="ControllerButton" type="Button" parent="MenuLayer/Buttons" groups=["SettingsButtons"]]
+[node name="ControllerButton" type="Button" parent="BaseSettings/Buttons" groups=["SettingsButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../AccessibilityButton")
@@ -121,7 +181,7 @@ text = "Controller"
 icon = ExtResource("5_rjepr")
 icon_alignment = 1
 
-[node name="KeyboardButton" type="Button" parent="MenuLayer/Buttons" groups=["SettingsButtons"]]
+[node name="KeyboardButton" type="Button" parent="BaseSettings/Buttons" groups=["SettingsButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../ControllerButton")
@@ -132,26 +192,49 @@ text = "Keyboard"
 icon = ExtResource("5_rjepr")
 icon_alignment = 1
 
-[node name="CreditsButton" type="Button" parent="MenuLayer/Buttons" groups=["SettingsButtons"]]
+[node name="CreditsButton" type="Button" parent="BaseSettings/Buttons" groups=["SettingsButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../KeyboardButton")
-focus_neighbor_bottom = NodePath("../BackMargin/BackButton")
-focus_next = NodePath("../BackMargin/BackButton")
+focus_neighbor_bottom = NodePath("../../BackMargin/BackButton")
+focus_next = NodePath("../../BackMargin/BackButton")
 focus_previous = NodePath("../KeyboardButton")
 text = "Credits"
 icon = ExtResource("5_rjepr")
 icon_alignment = 1
 
-[node name="BackMargin" type="MarginContainer" parent="MenuLayer/Buttons"]
-layout_mode = 2
-theme_override_constants/margin_top = 175
+[node name="BackMargin" type="MarginContainer" parent="BaseSettings"]
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.8
+anchor_right = 0.6
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_ehy2t")
 
-[node name="BackButton" type="Button" parent="MenuLayer/Buttons/BackMargin" groups=["SettingsButtons"]]
+[node name="BackButton" type="Button" parent="BaseSettings/BackMargin" groups=["SettingsButtons"]]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../../CreditsButton")
-focus_previous = NodePath("../../CreditsButton")
+size_flags_vertical = 0
+focus_neighbor_top = NodePath("../../Buttons/CreditsButton")
+focus_previous = NodePath("../../Buttons/CreditsButton")
 text = "Back"
 icon = ExtResource("5_rjepr")
 icon_alignment = 1
+
+[node name="AudioSettings" parent="." instance=ExtResource("6_smh24")]
+unique_name_in_owner = true
+offset = Vector2(3840, 2.08165e-12)
+transform = Transform2D(1, 0, 0, 1, 3840, 2.08165e-12)
+
+[node name="VideoSettings" parent="." instance=ExtResource("7_parav")]
+unique_name_in_owner = true
+offset = Vector2(3840, 2.08165e-12)
+transform = Transform2D(1, 0, 0, 1, 3840, 2.08165e-12)
+
+[node name="SettingsAnimations" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_6rnlb")
+}
