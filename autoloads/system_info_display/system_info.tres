@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bw1oessjgchhf"]
+
+[ext_resource type="FontFile" uid="uid://3sbbbx14qgjj" path="res://assets/fonts/roboto/Roboto-Medium.ttf" id="1_d1diq"]
+
+[resource]
+Label/colors/font_color = Color(0.47451, 0.47451, 0.486275, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 6
+Label/font_sizes/font_size = 40
+Label/fonts/font = ExtResource("1_d1diq")
+VBoxContainer/constants/separation = 25

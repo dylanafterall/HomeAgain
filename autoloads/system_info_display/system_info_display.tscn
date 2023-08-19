@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://1n2fgcpvvsxj"]
 
-[ext_resource type="Theme" uid="uid://dgmjks8mitn4d" path="res://scenes/ui/main_menu/menu_theme.tres" id="1_0wnra"]
 [ext_resource type="Script" path="res://autoloads/system_info_display/SystemInfoDisplay.cs" id="1_ubtvs"]
+[ext_resource type="Theme" uid="uid://bw1oessjgchhf" path="res://autoloads/system_info_display/system_info.tres" id="2_wevmw"]
 
 [node name="SystemInfoDisplay" type="CanvasLayer"]
 layer = 2
@@ -9,12 +9,11 @@ script = ExtResource("1_ubtvs")
 
 [node name="InfoMenu" type="VBoxContainer" parent="."]
 anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.7
-anchor_right = 0.15
+anchor_left = 0.02
+anchor_top = 0.1
+anchor_right = 0.17
 anchor_bottom = 0.9
-theme = ExtResource("1_0wnra")
-theme_override_constants/separation = 75
+theme = ExtResource("2_wevmw")
 
 [node name="CurrentFPS" type="Label" parent="InfoMenu"]
 unique_name_in_owner = true
@@ -24,28 +23,145 @@ theme_override_colors/font_color = Color(0.988235, 0.239216, 0.129412, 1)
 text = "FPS"
 metadata/_edit_use_anchors_ = true
 
-[node name="Speedrun" type="Control" parent="InfoMenu"]
-visible = false
+[node name="MasterVolume" type="HBoxContainer" parent="InfoMenu"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
 
-[node name="SpeedrunLabel" type="Label" parent="InfoMenu/Speedrun"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -54.5
-offset_right = 305.0
-offset_bottom = 54.5
-grow_vertical = 2
-text = "0:00:00.00"
-
-[node name="SpeedrunTimer" type="Timer" parent="InfoMenu/Speedrun"]
-
-[node name="LoadProgress" type="Label" parent="InfoMenu"]
-visible = false
-custom_minimum_size = Vector2(400, 125)
+[node name="MasterVolLabel" type="Label" parent="InfoMenu/MasterVolume"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.988235, 0.239216, 0.129412, 1)
-text = "---LOADING---"
+text = "Master Volume:"
+
+[node name="MasterVolValue" type="Label" parent="InfoMenu/MasterVolume"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="MusicVolume" type="HBoxContainer" parent="InfoMenu"]
+layout_mode = 2
+
+[node name="MusicVolLabel" type="Label" parent="InfoMenu/MusicVolume"]
+layout_mode = 2
+text = "Music Volume: "
+
+[node name="MusicVolValue" type="Label" parent="InfoMenu/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="SFXVolume" type="HBoxContainer" parent="InfoMenu"]
+layout_mode = 2
+
+[node name="SFXVolLabel" type="Label" parent="InfoMenu/SFXVolume"]
+layout_mode = 2
+text = "SFX Volume:"
+
+[node name="SFXVolValue" type="Label" parent="InfoMenu/SFXVolume"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="SpeechVolume" type="HBoxContainer" parent="InfoMenu"]
+layout_mode = 2
+
+[node name="SpeechVolLabel" type="Label" parent="InfoMenu/SpeechVolume"]
+layout_mode = 2
+text = "Speech Volume:"
+
+[node name="SpeechVolValue" type="Label" parent="InfoMenu/SpeechVolume"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="AmbienceVolume" type="HBoxContainer" parent="InfoMenu"]
+layout_mode = 2
+
+[node name="AmbienceVolLabel" type="Label" parent="InfoMenu/AmbienceVolume"]
+layout_mode = 2
+text = "Ambience Volume:"
+
+[node name="AmbienceVolValue" type="Label" parent="InfoMenu/AmbienceVolume"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Fullscreen" type="HBoxContainer" parent="InfoMenu"]
+layout_mode = 2
+
+[node name="FullscreenLabel" type="Label" parent="InfoMenu/Fullscreen"]
+layout_mode = 2
+text = "Fullscreen: "
+
+[node name="FullscreenValue" type="Label" parent="InfoMenu/Fullscreen"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Resolution" type="HBoxContainer" parent="InfoMenu"]
+layout_mode = 2
+
+[node name="ResolutionLabel" type="Label" parent="InfoMenu/Resolution"]
+layout_mode = 2
+text = "Resolution:"
+
+[node name="ResolutionValue" type="Label" parent="InfoMenu/Resolution"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="VSync" type="HBoxContainer" parent="InfoMenu"]
+layout_mode = 2
+
+[node name="VSyncLabel" type="Label" parent="InfoMenu/VSync"]
+layout_mode = 2
+text = "VSync:"
+
+[node name="VSyncValue" type="Label" parent="InfoMenu/VSync"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="MaxFPS" type="HBoxContainer" parent="InfoMenu"]
+layout_mode = 2
+
+[node name="MaxFPSLabel" type="Label" parent="InfoMenu/MaxFPS"]
+layout_mode = 2
+text = "Max FPS: "
+
+[node name="MaxFPSValue" type="Label" parent="InfoMenu/MaxFPS"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="AntiAlias" type="HBoxContainer" parent="InfoMenu"]
+layout_mode = 2
+
+[node name="AntiAliasLabel" type="Label" parent="InfoMenu/AntiAlias"]
+layout_mode = 2
+text = "Anti-Alias:"
+
+[node name="AntiAliasValue" type="Label" parent="InfoMenu/AntiAlias"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Brightness" type="HBoxContainer" parent="InfoMenu"]
+layout_mode = 2
+
+[node name="BrightnessLabel" type="Label" parent="InfoMenu/Brightness"]
+layout_mode = 2
+text = "Brightness:"
+
+[node name="BrightnessValue" type="Label" parent="InfoMenu/Brightness"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Contrast" type="HBoxContainer" parent="InfoMenu"]
+layout_mode = 2
+
+[node name="ContrastLabel" type="Label" parent="InfoMenu/Contrast"]
+layout_mode = 2
+text = "Contrast:"
+
+[node name="ContrastValue" type="Label" parent="InfoMenu/Contrast"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Saturation" type="HBoxContainer" parent="InfoMenu"]
+layout_mode = 2
+
+[node name="SaturationLabel" type="Label" parent="InfoMenu/Saturation"]
+layout_mode = 2
+text = "Saturation:"
+
+[node name="SaturationValue" type="Label" parent="InfoMenu/Saturation"]
+layout_mode = 2
+size_flags_horizontal = 10

@@ -8,6 +8,12 @@ signal back_from_video
 
 
 # ------------------------------------------------------------------------------
+# private variables ------------------------------------------------------------
+
+const SAVE_FILE: String = "user://user_video_settings.cfg"
+
+
+# ------------------------------------------------------------------------------
 # @onready variables -----------------------------------------------------------
 
 @onready var defaults = %Defaults
@@ -70,12 +76,15 @@ func _ready() -> void:
         button.focus_exited.connect(_move_from_button.bind(button))
         button.pressed.connect(_button_action.bind(button))
         
-    # setup button data        
     add_resolutions()
     add_aa_options()
     add_maxfps_options()
     
-    reset_defaults()
+    if FileAccess.file_exists(SAVE_FILE):
+        read_from_save()
+    else:
+        reset_defaults()
+    
     display_button.grab_focus()
 
 
@@ -164,7 +173,7 @@ func _checkbutton_action(pressed: bool, button: CheckButton) -> void:
             vsync_button:
                 DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
                 max_fps_button.disabled = false
-                var new_maxfps = defaults.MAXFPS_OPTIONS.get(max_fps_button.get_item_text(max_fps_button.get_selected()))
+                var new_maxfps = defaults.MAXFPS_OPTIONS[max_fps_button.get_item_text(max_fps_button.get_selected())]
                 Engine.set_max_fps(new_maxfps)
             show_fps_button:
                 SystemInfoDisplay.HideFPS()
@@ -214,7 +223,7 @@ func reset_defaults() -> void:
     get_viewport().set_size(defaults.RESOLUTION)
     vsync_button.button_pressed = defaults.VSYNC
     max_fps_button.select(defaults.MAX_FPS_INDEX)
-    max_fps_button.disabled = defaults.MAX_FPS_DISABLED
+    Engine.set_max_fps(defaults.MAX_FPS)
     show_fps_button.button_pressed = defaults.SHOW_FPS
     aa_button.select(defaults.ANTI_ALIAS_INDEX)
     get_viewport().msaa_2d = defaults.ANTI_ALIAS
@@ -223,9 +232,53 @@ func reset_defaults() -> void:
     saturation_slider.set_value(defaults.SATURATION)
     
     
+func write_to_save() -> void:
+    var config = ConfigFile.new()
+    
+    config.set_value("Video", "user_display_button_pressed", display_button.is_pressed())
+    config.set_value("Video", "user_resolution_index", resolution_button.get_selected())
+    config.set_value("Video", "user_resolution", resolution_button.get_item_text(resolution_button.get_selected()))
+    config.set_value("Video", "user_vsync_button_pressed", vsync_button.is_pressed())
+    config.set_value("Video", "user_max_fps_index", max_fps_button.get_selected())
+    config.set_value("Video", "user_max_fps", max_fps_button.get_item_text(max_fps_button.get_selected()))
+    config.set_value("Video", "user_show_fps_pressed", show_fps_button.is_pressed())
+    config.set_value("Video", "user_aa_index", aa_button.get_selected())
+    config.set_value("Video", "user_aa", aa_button.get_item_text(aa_button.get_selected()))
+    config.set_value("Video", "user_brightness", brightness_slider.get_value())
+    config.set_value("Video", "user_contrast", contrast_slider.get_value())
+    config.set_value("Video", "user_saturation", saturation_slider.get_value())
+    
+    config.save(SAVE_FILE)
+
+
+func read_from_save() -> void:
+    var config = ConfigFile.new()
+    
+    var err = config.load(SAVE_FILE)
+    if err != OK:
+        return
+        
+    display_button.button_pressed = config.get_value("Video", "user_display_button_pressed")
+    resolution_button.select(config.get_value("Video", "user_resolution_index"))
+    get_viewport().set_size(defaults.RESOLUTION_OPTIONS[config.get_value("Video", "user_resolution")])
+    vsync_button.button_pressed = config.get_value("Video", "user_vsync_button_pressed")
+    if !config.get_value("Video", "user_vsync_button_pressed"):
+        DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+    max_fps_button.select(config.get_value("Video", "user_max_fps_index"))
+    Engine.set_max_fps(defaults.MAXFPS_OPTIONS[config.get_value("Video", "user_max_fps")])
+    show_fps_button.button_pressed = config.get_value("Video", "user_show_fps_pressed")
+    aa_button.select(config.get_value("Video", "user_aa_index"))
+    get_viewport().msaa_2d = defaults.AA_OPTIONS[config.get_value("Video", "user_aa")]
+    brightness_slider.set_value(config.get_value("Video", "user_brightness"))
+    contrast_slider.set_value(config.get_value("Video", "user_contrast"))
+    saturation_slider.set_value(config.get_value("Video", "user_saturation"))
+        
+        
 func _button_action(object) -> void:	
     match object:
         reset_button:
             reset_defaults()
         back_button:
+            SystemInfoDisplay.UpdateSettings()
+            write_to_save()
             back_from_video.emit()

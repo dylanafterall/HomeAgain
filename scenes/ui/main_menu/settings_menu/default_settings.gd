@@ -48,8 +48,7 @@ const AA_OPTIONS: Dictionary = {
 
 const FULLSCREEN: bool = false
 const VSYNC: bool = true
-const MAX_FPS_DISABLED: bool = true
-const SHOW_FPS: bool = false
+const SHOW_FPS: bool = true
 const BRIGHTNESS: float = 1.0
 const CONTRAST: float = 1.0
 const SATURATION: float = 1.0

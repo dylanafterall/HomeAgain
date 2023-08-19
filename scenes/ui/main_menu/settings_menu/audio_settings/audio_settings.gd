@@ -8,6 +8,12 @@ signal back_from_audio
 
 
 # ------------------------------------------------------------------------------
+# private variables ------------------------------------------------------------
+
+const SAVE_FILE: String = "user://user_audio_settings.cfg"
+
+
+# ------------------------------------------------------------------------------
 # @onready variables -----------------------------------------------------------
 
 @onready var defaults: Node = %Defaults
@@ -28,6 +34,12 @@ signal back_from_audio
     speech_slider:%SpeechLabel,
     ambience_slider:%AmbienceLabel,
 }
+
+@onready var master_index: int = AudioServer.get_bus_index(master_slider.audio_bus_name)
+@onready var music_index: int = AudioServer.get_bus_index(music_slider.audio_bus_name)	
+@onready var sfx_index: int = AudioServer.get_bus_index(sfx_slider.audio_bus_name)		
+@onready var speech_index: int = AudioServer.get_bus_index(speech_slider.audio_bus_name)			
+@onready var ambience_index: int = AudioServer.get_bus_index(ambience_slider.audio_bus_name)
 
 
 # ------------------------------------------------------------------------------
@@ -57,8 +69,11 @@ func _ready() -> void:
         button.focus_exited.connect(_move_from_button.bind(button))
         button.pressed.connect(_button_action.bind(button))
         
-    # setup button data
-    reset_defaults()
+    if FileAccess.file_exists(SAVE_FILE):
+        read_from_save()
+    else:
+        reset_defaults()
+
     mute_button.grab_focus()
 
 
@@ -141,24 +156,57 @@ func _move_from_button(button: Button) -> void:
 func reset_defaults() -> void:
     mute_button.button_pressed = defaults.MUTE
     
-    var master_index = AudioServer.get_bus_index(master_slider.audio_bus_name)
     AudioServer.set_bus_volume_db(master_index, defaults.MASTER_VOLUME)
     master_slider.value = db_to_linear(AudioServer.get_bus_volume_db(master_index))
     
-    var music_index = AudioServer.get_bus_index(music_slider.audio_bus_name)
     AudioServer.set_bus_volume_db(music_index, defaults.MUSIC_VOLUME)
     music_slider.value = db_to_linear(AudioServer.get_bus_volume_db(music_index))
     
-    var sfx_index = AudioServer.get_bus_index(sfx_slider.audio_bus_name)
     AudioServer.set_bus_volume_db(sfx_index, defaults.SFX_VOLUME)
     sfx_slider.value = db_to_linear(AudioServer.get_bus_volume_db(sfx_index))
     
-    var speech_index = AudioServer.get_bus_index(speech_slider.audio_bus_name)
     AudioServer.set_bus_volume_db(speech_index, defaults.SPEECH_VOLUME)
     speech_slider.value = db_to_linear(AudioServer.get_bus_volume_db(speech_index))
     
-    var ambience_index = AudioServer.get_bus_index(ambience_slider.audio_bus_name)
     AudioServer.set_bus_volume_db(ambience_index, defaults.AMBIENCE_VOLUME)
+    ambience_slider.value = db_to_linear(AudioServer.get_bus_volume_db(ambience_index))
+    
+
+func write_to_save() -> void:
+    var config = ConfigFile.new()
+    
+    config.set_value("Audio", "user_mute_button_pressed", mute_button.is_pressed())
+    config.set_value("Audio", "user_master_volume", AudioServer.get_bus_volume_db(master_index))
+    config.set_value("Audio", "user_music_volume", AudioServer.get_bus_volume_db(music_index))
+    config.set_value("Audio", "user_sfx_volume", AudioServer.get_bus_volume_db(sfx_index))
+    config.set_value("Audio", "user_speech_volume", AudioServer.get_bus_volume_db(speech_index))
+    config.set_value("Audio", "user_ambience_volume", AudioServer.get_bus_volume_db(ambience_index))
+    
+    config.save(SAVE_FILE)
+
+
+func read_from_save() -> void:
+    var config = ConfigFile.new()
+    
+    var err = config.load(SAVE_FILE)
+    if err != OK:
+        return
+        
+    mute_button.button_pressed = config.get_value("Audio", "user_mute_button_pressed")
+        
+    AudioServer.set_bus_volume_db(master_index, config.get_value("Audio", "user_master_volume"))
+    master_slider.value = db_to_linear(AudioServer.get_bus_volume_db(master_index))
+        
+    AudioServer.set_bus_volume_db(music_index, config.get_value("Audio", "user_music_volume"))
+    music_slider.value = db_to_linear(AudioServer.get_bus_volume_db(music_index))
+        
+    AudioServer.set_bus_volume_db(sfx_index, config.get_value("Audio", "user_sfx_volume"))
+    sfx_slider.value = db_to_linear(AudioServer.get_bus_volume_db(sfx_index))
+            
+    AudioServer.set_bus_volume_db(speech_index, config.get_value("Audio", "user_speech_volume"))
+    speech_slider.value = db_to_linear(AudioServer.get_bus_volume_db(speech_index))
+                
+    AudioServer.set_bus_volume_db(ambience_index, config.get_value("Audio", "user_ambience_volume"))
     ambience_slider.value = db_to_linear(AudioServer.get_bus_volume_db(ambience_index))
 
 
@@ -167,4 +215,6 @@ func _button_action(object) -> void:
         reset_button:
             reset_defaults()
         back_button:
+            SystemInfoDisplay.UpdateSettings()
+            write_to_save()
             back_from_audio.emit()
