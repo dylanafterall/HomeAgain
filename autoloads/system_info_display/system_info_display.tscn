@@ -5,6 +5,7 @@
 
 [node name="SystemInfoDisplay" type="CanvasLayer"]
 layer = 2
+visible = false
 script = ExtResource("1_ubtvs")
 
 [node name="InfoMenu" type="VBoxContainer" parent="."]

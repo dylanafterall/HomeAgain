@@ -21,4 +21,7 @@ mono_crash.*.json
 .DS_Store
 
 # Project specific ignores
-assets/
+assets/audio/
+assets/fonts/
+assets/images/
+assets/video/

@@ -1,9 +1,27 @@
+## \*** This Project is Archived \***
+
+<p>This project was my introduction to the Godot game engine. I was really impressed with the ease of its UI 
+tools, and the enthusiasm of its open source community. This was also my first time coding in C#, which was fun to pick 
+up and I might return to in the future. Overall, a pleasant experience, however brief. I don't plan on adding anything
+more to this project; it was just meant to be a quick experiment.</p>
+
 # Home Again
-Godot 4.1 game engine menu/ui demo.
+
+![]()
+
+## Tools Used:
+
+<p>
+<ul>
+    <li>Engine: <a href="https://godotengine.org/">Godot 4.1</a></li>
+    <li>Editor: <a href="https://www.jetbrains.com/rider/">JetBrains Rider</a></li>
+    <li>Languages: <a href="https://dotnet.microsoft.com/en-us/languages/csharp">C#</a>, <a href="https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html">GDScript</a></li>
+</ul>
+</p>
 
 ## Acknowledgements
 
-<p> This project uses the following assets:
+<p> 
 <ul>
 	<li><a href="https://www.nasa.gov/">National Aeronautics and Space Administration (NASA):</a></li>
 	<ul>
