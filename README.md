@@ -7,7 +7,11 @@ more to this project; it was just meant to be a quick experiment.</p>
 
 # Home Again
 
-![]()
+![](https://github.com/dylanafterall/HomeAgain/blob/main/assets/demo/godot_title_screen.gif)
+![](https://github.com/dylanafterall/HomeAgain/blob/main/assets/demo/godot_settings.gif)
+
+<p>All of the settings configuration UI seen in the demo gifs (for Video and Audio settings) is implemented and functional. Changes made to settings persist between 
+both scene changes as well as game sessions, until reset to defaults or adjusted further.</p>
 
 ## Tools Used:
 
